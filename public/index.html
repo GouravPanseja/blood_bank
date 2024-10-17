@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register / Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="form-container">
+    <!-- Registration Form -->
+    <div id="registerForm">
+        <h2>Register</h2>
+        <div class="form-group">
+            <label>Select Role:</label>
+            <input type="radio" name="role" value="user" onclick="showForm('user')"> User
+            <input type="radio" name="role" value="donor" onclick="showForm('donor')"> Donor
+            <input type="radio" name="role" value="admin" onclick="showForm('admin')"> Admin
+        </div>
+
+        <form id="dynamicForm" action="/register" method="POST">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- Donor Specific Fields -->
+            <div id="donorFields" class="hidden">
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact No:</label>
+                    <input type="tel" id="contact" name="contact">
+                </div>
+            </div>
+
+            <!-- Hidden input to store the role -->
+            <input type="hidden" id="roleInput" name="role" value="user">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have an account? <a href="#" onclick="showLoginForm()">Login here</a></p>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="hidden">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <div class="form-group">
+                <label>Select Role:</label>
+                <input type="radio" name="role" value="user"> User
+                <input type="radio" name="role" value="donor"> Donor
+                <input type="radio" name="role" value="admin"> Admin
+            </div>
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+    </div>
+</div>
+
+<script>
+    function showForm(role) {
+        const donorFields = document.getElementById('donorFields');
+        const roleInput = document.getElementById('roleInput');
+        roleInput.value = role;  // Set the selected role to the hidden input
+
+        if (role === 'donor') {
+            donorFields.classList.remove('hidden');
+        } else {
+            donorFields.classList.add('hidden');
+        }
+    }
+
+    function showLoginForm() {
+        document.getElementById('registerForm').classList.add('hidden');
+        document.getElementById('loginForm').classList.remove('hidden');
+    }
+
+    function showRegisterForm() {
+        document.getElementById('loginForm').classList.add('hidden');
+        document.getElementById('registerForm').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>

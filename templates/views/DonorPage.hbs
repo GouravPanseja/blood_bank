@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management System</title>
+    {{!--
+    <link rel="stylesheet" href="DonorPage.css"> --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        /* overflow: hidden;  */
+        font-family: Arial, sans-serif;
+        padding: 0;
+    }
+
+    .navbar {
+        background-color: #d00;
+        z-index: 10;
+        position: fixed;
+        width: 100%;
+    }
+
+    .navbar-brand,
+    .nav-link {
+        color: white !important;
+    }
+
+    .navbar-brand i,
+    .nav-item i {
+        color: white !important;
+        font-size: 1.5rem;
+    }
+
+    .nav-link:hover {
+        color: #ffdddd !important;
+    }
+
+    .navbar-toggler-icon {
+        background-color: white;
+    }
+
+    .home-content {
+        position: fixed;
+        left: -0.5rem;
+    }
+
+    .home-content img {
+        position: fixed;
+        top: 3.5rem;
+        width: 100%;
+    }
+
+    .quote-container {
+        width: max-content;
+        position: absolute;
+        left: 4rem;
+        top: 5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .quote-container button {
+        background-color: #d00;
+        width: 40%;
+
+    }
+
+    @media (max-width: 768px) {
+        .home-content {
+            flex-direction: column;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .quote-container {
+            margin-top: 20px;
+            margin-left: 0;
+        }
+
+        img {
+            height: 450px;
+        }
+
+        #profile,
+        #details,
+        #contact-details {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        body {
+            overflow-y: auto;
+        }
+    }
+
+
+    /* donar page */
+    #pic-container {
+        height: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #pic-container img {
+        height: 10rem;
+        width: auto;
+        border-radius: 50%;
+        margin-left: -2px;
+        border: 2px solid black;
+    }
+
+    #profile,
+    #details,
+    #contact-details {
+        padding: 20px;
+        text-align: center;
+        border: 2px solid black;
+        margin-bottom: 20px;
+        background-color: #fbe2e2;
+        /* background-color: #efefef; */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 10px;
+    }
+
+    #profile h2,
+    #details h2,
+    #contact-details h2 {
+        font-weight: bold;
+    }
+
+    .tab-pane {
+        padding-bottom: 20px;
+    }
+
+    .pic-description #pic-1 {
+        font-size: 15px;
+        color: rgb(251, 54, 54);
+        font-weight: bold;
+    }
+
+    .donor-content h1 {
+        text-align: center;
+        padding-top: 10px;
+        font-weight: 700;
+    }
+
+    #main-box {
+        padding-top: 2rem;
+    }
+
+    input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #contact-details label {
+        width: 150px;
+        text-align: left;
+    }
+
+    #details div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #details label {
+        width: 150px;
+        text-align: left;
+        margin-right: 10px;
+    }
+
+    #details input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    #details input[type="text"],
+    #details input[type="number"],
+    #details input[type="date"],
+    #details input[type="email"],
+    #details input[type="file"] {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #gender {
+        display: flex;
+        align-items: center;
+    }
+
+    #idproof {
+        margin-bottom: 0;
+    }
+
+    #male {
+        margin-left: 76px;
+    }
+
+    #gender #male-label {
+        margin-left: 10px;
+    }
+
+    #other {
+        width: fit-content;
+        margin: auto;
+    }
+
+    #details {
+        margin-left: -4rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        .container .row {
+            flex-direction: column;
+        }
+
+        #profile,
+        #details,
+        #contact-details {
+            /*  */
+            margin-left: 0;
+            margin-right: auto;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        body {
+            overflow-y: auto;
+
+        }
+
+        #main-box {
+            padding-top: 0;
+        }
+    }
+
+    /*  others info  */
+
+
+    .pic-description {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #profile {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: max-content;
+    }
+
+    #details,
+    #contact-details,
+    #other-info-details {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form input fields styling */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="file"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Form buttons */
+    button {
+        background-color: #d00;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #b00;
+    }
+
+    /* Align the form buttons */
+    .buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #prev-button,
+    #submit-button {
+        margin: 5px;
+    }
+
+    /* Donor form labels */
+    label {
+        font-weight: bold;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+
+        .container,
+        .row {
+            display: block;
+        }
+
+        .col-md-4 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #pic-container {
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        #pic-container img {
+            width: 40%;
+            /* Adjust the size on mobile */
+        }
+    }
+
+
+    #other-info-details {
+        padding: 20px;
+        text-align: center;
+        border: 2px solid black;
+        margin-bottom: 20px;
+        background-color: #eee;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 10px;
+        width: 100%;
+        /* Set width to 100% to take full width */
+        box-sizing: border-box;
+        /* Include padding and border in the width */
+        margin-top: 3rem;
+    }
+
+    .other-info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .other-info-section {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .other-info-section h3 {
+        margin-top: 0;
+    }
+
+    .gap {
+        margin-bottom: 10px;
+    }
+
+    .checkbox {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-evenly;
+    }
+
+    .disease {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .disease-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: auto;
+    }
+
+    .dise {
+        margin-right: 10px;
+    }
+
+    #other-info {
+        margin-top: 2rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .options {
+        display: flex;
+        justify-content: space-evenly;
+    }
+</style>
+
+<body>
+    <!-- Responsive navbar with toggle -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class='bx bxs-donate-blood'></i>
+                <span class="ms-2">DonateBlood</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true">Home</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">Donate</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                            aria-selected="false">Request</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="history-tab" data-bs-toggle="tab"
+                            data-bs-target="#history-tab-pane" type="button" role="tab" aria-controls="history-tab-pane"
+                            aria-selected="false">History</button>
+                    </li>
+                    <li class="nav-item">
+                        <i class='bx bx-log-in nav-link'></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tab Content -->
+    <!-- home page  -->
+    <div class="tab-content container" id="myTabContent">
+        <div class="tab-pane fade show active home-content" id="home-tab-pane" role="tabpanel"
+            aria-labelledby="home-tab" tabindex="0">
+            <!-- <img src="https://www.careinsurance.com/upload_master/media/posts/July2022/donating-blood-here-s-everything-you-need-to-know.jpg"
+                alt=""> -->
+            <!-- <img src="https://www.lifeblood.com.au/sites/default/files/styles/hero_banner_1280_width/public/2024-09/life-is-the-reason-blood-hero-banner-1580x490px.jpg.webp?itok=UPDm3R4O" alt=""> -->
+            <!-- <img src="https://www.nhlbi.nih.gov/sites/default/files/2023-06/Whole-Blood-Transfusion-Parts_Social-Media-Animated-GIF_0.gif" alt=""> -->
+            <img src="https://www.nhlbi.nih.gov/sites/default/files/2022-12/BDDEP_What-Anemia-Animation-GIF-3_2022-12-15%20%281%29.gif"
+                alt="">
+            <!-- <img src="https://www.nhlbi.nih.gov/sites/default/files/2022-12/BDDEP_Blood-Safety-Animation-GIF-3_2022-12-15%20%281%29.gif" alt=""> -->
+        </div>
+
+        <!-- donor information  -->
+        <div class="tab-pane fade donor-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+            tabindex="0">
+            <h1>Donor Information</h1>
+            <form id="myForm">
+
+            <div class="container" id="main-box">
+                <div class="row">
+                    <!-- Profile Section -->
+                    <div class="col-md-4">
+                        <div id="profile">
+                            <div id="pic-container">
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                    alt="Profile Picture">
+                            </div>
+                            <div class="pic-description">
+                                <h2>Upload Photo</h2>
+                                <h4 id="pic-1">Please Upload Image Size less than 100Kb</h4>
+                                <input type="file" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information Section -->
+                    <div class="col-md-4">
+                        <div id="details" class="padding">
+                            <h2>Personal Information</h2>
+                            <div class="name">
+                                <label>Name </label>
+                                <input type="text" placeholder="Enter your Name" name="name">
+                            </div>
+                            <div id="age">
+                                <label for="age">Age </label>
+                                <input type="number" placeholder="Enter your Age" name="age">
+                            </div>
+                            <div id="dateofbirth">
+                                <label for="dob">Date Of Birth </label>
+                                <input type="date" name="dateOfBirth">
+                            </div>
+                            <div id="gender">
+                                <label for="male">Gender</label>
+                                <input type="radio" id="male" name="gender" value="Male">
+                                <label for="male" id="male-label">Male</label>
+                                <input type="radio" id="female" name="gender" value="Female">
+                                <label for="female">Female</label>
+                                <input type="radio" id="other" name="gender" value="Other">
+                                <label for="other">Other</label>
+                            </div>
+                            <div id="email">
+                                <label for="email">Email </label>
+                                <input type="email" placeholder="Enter your Email Id" name="email">
+                            </div>
+                            <div id="mobile">
+                                <label for="mobile">Mobile Number </label>
+                                <input type="number" placeholder="Enter your Mobile Number" name="contact">
+                            </div>
+                            <div id="idproof">
+                                <label for="id">Id Proof </label>
+                                <input type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details Section -->
+                    <div class="col-md-4">
+                        <div id="contact-details" class="padding">
+                            <h2>Contact Details</h2>
+                            <div id="address">
+                                <label>Address Line 1</label>
+                                <input type="text" placeholder="Enter your Address" name="address" required>
+                            </div>
+                            <div id="address">
+                                <label>Address Line 2</label>
+                                <input type="text" placeholder="Enter your Address">
+                            </div>
+                            <div id="city">
+                                <label for="City">City</label>
+                                <input type="text" placeholder="Enter your city" name="city">
+                            </div>
+                            <div id="district">
+                                <label for="district">District</label>
+                                <input type="text" placeholder="Enter your District" name="district">
+                            </div>
+                            <div id="state">
+                                <label for="state">State</label>
+                                <input type="text" placeholder="Enter your state" name="state">
+                            </div>
+                            <div id="pincode">
+                                <label for="id">Pin Code</label>
+                                <input type="number" placeholder="Enter PINCODE" name="pincode">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Information Section -->
+            <div class="col-md-4" id="other" class="hidden">
+                <div id="other-info-details" class="padding">
+                    <h2>Other Information</h2>
+                    <div class="other-info-container">
+                        <div class="other-info-section">
+                            <h3>Blood Group</h3>
+                            <div id="bloodgroup">
+                                <label>Blood Group </label>
+                                <select name="bloodgroup" id="blood" name="bloodGroup">
+                                    <option value="select">--Select--</option>
+                                    <option value="A+">A+</option>
+                                    <option value="B+">B+</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="o+">O+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B-">B-</option>
+                                    <option value="o-">O-</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="other-info-section">
+                            <h3>Donation History</h3>
+                            <div id="previous" class="gap">
+                                <label>Have you donated previously?</label>
+                                <input type="radio" id="yes" name="donated" value="yes" name="donationHistory">
+                                <label for="yes">Yes</label>
+                                <input type="radio" id="no" name="donated" value="no">
+                                <label for="no">No</label>
+                            </div>
+                            <div id="donate" class="gap">
+                                <Label>What was the last time you donated Blood ? </Label>
+                                <input type="date">
+                            </div>
+                        </div>
+
+                        <div class="other-info-section">
+                            <h3>Medical History</h3>
+                            <div id="six" class="gap">
+                                <label for="last">In the last six months have you had any of the following ?</label>
+                            </div>
+                            <div class="checkbox">
+                                <input type="radio" name="medicalHistory">
+                                <label for="tattoo" name="medicalHistory">Tattooing</label>
+                                <input type="radio" name="medicalHistory">
+                                <label for="ear">Ear piercing</label>
+                                <input type="radio" name="medicalHistory">
+                                <label for="dental">Dental Extraction</label>
+                                {{!-- <input type="text" placeholder="like tattooing , ear piercing , dental extraction .... " name="medicalHistory"> --}}
+                            </div>
+                        </div>
+
+                        <div class="other-info-section">
+                            <h3>Diseases</h3>
+                            <div id="state">
+                                <label for="" id="State">Do you suffer from or have suffered from any of the following
+                                </label>
+                                <label for="" id="dis">diseases?</label>
+                            </div>
+                            <div class="disease">
+                                <div class="disease-container">
+                                    <input type="text" name="disease" placeholder="Enter any disease (if have)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="other-info-section">
+                            <h3>Surgery/Blood Transfusion History</h3>
+                            <div>
+                                <label for="" id="history">Is there any history of surgery or blood transfusion in the
+                                    past six
+                                </label>
+                                <label for="" id="month">months?</label>
+                            </div>
+
+                            <div class="options">
+                                <input type="radio" id="major" name="surgeryHistory">
+                                <label for="">Major</label>
+                                <input type="radio" name="surgeryHistory">
+                                <label for="">Minor</label>
+                                <input type="radio" name="surgeryHistory">
+                                <label for="">Blood Transfusion</label>
+                                {{!-- <input type="text" placeholder="Enter yes/ no" name="surgeryHistory"> --}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button id="submit-button">Submit</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <!-- Request donor page ..  -->
+
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+            <h1>Request Page</h1>
+            <p>Request blood in emergency situations.</p>
+        </div>
+
+        <div class="tab-pane fade" id="history-tab-pane" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
+            <h1>History Page</h1>
+            <p>View your blood donation and request history.</p>
+        </div>
+
+    </div>
+
+</body>
+<script>
+    console.log("hi");
+    const form = document.getElementById('myForm');
+
+    form.addEventListener('submit', async function(e){
+        console.log("hi");
+        e.preventDefault(); 
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        console.log("from data " ,data);
+
+        try {
+        const response = await fetch('http://localhost:3000/submitDonorInfo', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json', 
+            },
+            body: JSON.stringify(data), 
+        });
+
+        if (!response.ok) {
+            console.log("fetch response uncessful")
+        }
+
+        const result = await response.json();
+        console.log('Success:', result);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+</script>
+
