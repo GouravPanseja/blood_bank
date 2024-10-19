@@ -1,106 +1,163 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const app = express();
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const bcrypt = require('bcrypt');
+// const path = require('path'); 
+// const hbs = require("hbs"); 
+// const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); // Serve static files (CSS, JS, HTML)
+// app.use(express.json()); 
 
-// Import models from mongoose.js
-const { User, Donor, Admin } = require('./routes/mongoose');
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static('public')); 
+// const templatePath =  path.join(__dirname , "./templates/views");
+// const PartialsPath =  path.join(__dirname , "./templates/partials");
 
-app.post('/register', async (req, res) => {
-    const { name, email, password, role, gender, contact } = req.body;
 
-    try {
-        // Check if the email is already registered in the corresponding collection based on role
-        let existingUser;
-        if (role === 'user') {
-            existingUser = await User.findOne({ email });
-        } else if (role === 'donor') {
-            existingUser = await Donor.findOne({ email });
-        } else if (role === 'admin') {
-            existingUser = await Admin.findOne({ email });
-        }
+// app.set("view engine", "hbs"); 
+// app.set("views", templatePath); 
+// hbs.registerPartials(PartialsPath);
 
-        if (existingUser) {
-            return res.send('<h1>Email is already registered!</h1>');
-        }
+// // Import models from mongoose.js
+// const { User, Donor, Admin} = require('./routes/mongoose');
+// const {donorInfo} = require("./routes/donorRoutes"); 
 
-        // Hash the password before saving
-        const hashedPassword = await bcrypt.hash(password, 10);
+// app.post('/register', async (req, res) => {
+//     const { name, email, password, role, gender, contact } = req.body;
 
-        // Handle saving based on the role
-        if (role === 'user') {
-            // Save general User data to the User collection
-            const newUser = new User({
-                name,
-                email,
-                password: hashedPassword
-            });
-            await newUser.save();
-            res.send('<h1>User registration successful!</h1>');
-        } else if (role === 'donor') {
-            // Save Donor data to the Donor collection
-            const newDonor = new Donor({
-                name,
-                email,
-                password: hashedPassword,
-                gender,
-                contact
-            });
-            await newDonor.save();
-            res.send('<h1>Donor registration successful!</h1>');
-        } else if (role === 'admin') {
-            // Save Admin data to the Admin collection
-            const newAdmin = new Admin({
-                name,
-                email,
-                password: hashedPassword
-            });
-            await newAdmin.save();
-            res.send('<h1>Admin registration successful!</h1>');
-        }
-    } catch (error) {
-        res.send(`<h1>Error: ${error.message}</h1>`);
-    }
-});
+//     try {
+//         // Check if the email is already registered in the corresponding collection based on role
+//         let existingUser ;
+//         if (role === 'user') {
+//             existingUser  = await User.findOne({ email });
+//         } else if (role === 'donor') {
+//             existingUser  = await Donor.findOne({ email });
+//         } else if (role === 'admin') {
+//             existingUser  = await Admin.findOne({ email });
+//         }
 
-// Login Route
-app.post('/login', async (req, res) => {
-    const { email, password, role } = req.body;
+//         if (existingUser ) {
+//             return res.send('<h1>Email is already registered!</h1>');
+//         }
 
-    try {
-        let user;
+//         // Hash the password before saving
+//         const hashedPassword = await bcrypt.hash(password, 10);
 
-        if (role === 'user') {
-            // Find general User by email
-            user = await User.findOne({ email });
-        } else if (role === 'donor') {
-            // Find Donor by email
-            user = await Donor.findOne({ email });
-        } else if (role === 'admin') {
-            // Find Admin by email
-            user = await Admin.findOne({ email });
-        }
+//         // Handle saving based on the role
+//         if (role === 'user') {
+//             const newUser = new User({
+//                 name,
+//                 email,
+//                 password: hashedPassword
+//             });
+//             await newUser.save();
+//             res.render('userPage'); // Redirect to userPage
 
-        if (!user) {
-            return res.send('<h1>User not found or incorrect role!</h1>');
-        }
+//         } else if (role === 'donor') {
+//             const newDonor = new Donor({
+//                 name,
+//                 email,
+//                 password: hashedPassword,
+//                 gender,
+//                 contact
+//             });
+//             await newDonor.save();
+//             res.render('donorPage'); // Redirect to donorPage
 
-        // Compare hashed passwords
-        const match = await bcrypt.compare(password, user.password);
-        if (match) {
-            res.send(`<h1>Welcome, ${user.name}!</h1>`);
-        } else {
-            res.send('<h1>Incorrect password!</h1>');
-        }
-    } catch (error) {
-        res.send(`<h1>Error: ${error.message}</h1>`);
-    }
-});
+//         } else if (role === 'admin') {
+//             const newAdmin = new Admin({
+//                 name,
+//                 email,
+//                 password: hashedPassword
+//             });
+//             await newAdmin.save();
+//             res.render('adminPage'); // Redirect to adminPage
+//         }
+//     } catch (error) {
+//         res.send(`<h1>Error: ${error.message}</h1>`);
+//     }
+// });
 
-// Start server
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
-});
+// // Login :-
+// app.post('/login', async (req, res) => {
+//     const { email, password, role } = req.body;
+
+//     try {
+//         let user;
+
+//         if (role === 'user') {
+//             user = await User.findOne({ email });
+//         } else if (role === 'donor') {
+//             user = await Donor.findOne({ email });
+//         } else if (role === 'admin') {
+//             user = await Admin.findOne({ email });
+//         }
+
+//         if (!user) {
+//             return res.send('<h1>User not found</h1>');
+//         }
+
+//         // Compare hashed passwords
+//         const match = await bcrypt.compare(password, user.password);
+//         if (match) {
+//             if (role === 'user') {
+//                 res.render('UserPage'); // Redirect to userPage
+//             } else if (role === 'donor') {
+//                 res.render('DonorPage'); // Redirect to donorPage
+//             } else if (role === 'admin') {
+//                 res.render('AdminPage'); // Redirect to adminPage
+//             }
+//         } else {
+//             res.send('<h1>Incorrect password!</h1>');
+//         }
+//     } catch (error) {
+//         res.send(`<h1>Error: ${error.message}</h1>`);
+//     }
+// });
+// app.post('/submitDonorInfo', async (req, res) => {
+//     const { name, email, gender, contact, age, dateOfBirth, idProof, address, city, district, state, pincode, bloodGroup, donationHistory, medicalHistory, surgeryHistory, diseases } = req.body;
+
+//     try {
+//         const newDonorInfo = await donorInfo.create({
+//             name,
+//             email,
+//             gender,
+//             contact,
+//             age,
+//             dateOfBirth,
+//             idProof,
+//             address,
+//             city,
+//             district,
+//             state,
+//             pincode,
+//             bloodGroup,
+//             donationHistory,
+//             medicalHistory,
+//             surgeryHistory,
+//             diseases
+//         });
+
+//         res.status(201).send({ message: 'Donor information submitted successfully' });
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).send({ message: 'Error submitting donor information' });
+//     }
+// });
+
+// app.get('/userPage', (req, res) => {
+//     res.render('UserPage');
+// });
+
+// app.get('/donorPage', (req, res) => {
+//     console.log("hi");
+//     res.render('C:\Users\sneha\Desktop\prepare projects\Blood Donation MERN\templates\views\DonorPage.hbs');
+// });
+
+// app.get('/adminPage', (req, res) => {
+//     res.sendFile('AdminPage');
+// });
+
+// // Start server
+// app.listen(3000, () => {
+//     console.log('Server is running on http://localhost:3000');
+// });

@@ -4,7 +4,7 @@
   "description": "Blood Donation",
   "main": "index.js",
   "scripts": {
-    "dev" : "nodemon server.js"
+    "dev": "nodemon server.js"
   },
   "author": "Sneha Arora",
   "license": "ISC",

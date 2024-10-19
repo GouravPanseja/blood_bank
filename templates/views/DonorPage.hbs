@@ -489,7 +489,7 @@
         <div class="tab-pane fade donor-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
             tabindex="0">
             <h1>Donor Information</h1>
-            <form id="myForm">
+            <form id="myForm" action="/submitDonorInfo" method="POST" enctype="multipart/form-data">
 
             <div class="container" id="main-box">
                 <div class="row">
@@ -503,7 +503,7 @@
                             <div class="pic-description">
                                 <h2>Upload Photo</h2>
                                 <h4 id="pic-1">Please Upload Image Size less than 100Kb</h4>
-                                <input type="file" >
+                                <input type="file" name="image" required>
                             </div>
                         </div>
                     </div>
@@ -670,7 +670,7 @@
                         </div>
                     </div>
                     <div class="buttons">
-                        <button id="submit-button">Submit</button>
+                        <button id="submit-button" type="submit">Submit</button>
                     </div>
                 </div>
             </div>

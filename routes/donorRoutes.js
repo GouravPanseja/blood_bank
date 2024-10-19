@@ -27,6 +27,7 @@ const donorInfoSchema = new mongoose.Schema({
     medicalHistory: String,
     surgeryHistory: String,
     disease: String,
+    image : String, 
 })
 
 const donorInfo  = mongoose.model('donorInfo', donorInfoSchema); 
