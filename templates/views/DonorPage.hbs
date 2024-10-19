@@ -60,21 +60,9 @@
         width: 100%;
     }
 
-    .quote-container {
-        width: max-content;
-        position: absolute;
-        left: 4rem;
-        top: 5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .quote-container button {
-        background-color: #d00;
-        width: 40%;
-
+    .bx-log-in:hover {
+        color: #333;
+        cursor: pointer;
     }
 
     @media (max-width: 768px) {
@@ -257,7 +245,6 @@
 
     /*  others info  */
 
-
     .pic-description {
         text-align: center;
         margin-top: 10px;
@@ -310,7 +297,6 @@
         background-color: #b00;
     }
 
-    /* Align the form buttons */
     .buttons {
         text-align: center;
         margin-top: 20px;
@@ -321,12 +307,10 @@
         margin: 5px;
     }
 
-    /* Donor form labels */
     label {
         font-weight: bold;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
 
         .container,
@@ -346,7 +330,6 @@
 
         #pic-container img {
             width: 40%;
-            /* Adjust the size on mobile */
         }
     }
 
@@ -362,9 +345,7 @@
         gap: 10px;
         border-radius: 10px;
         width: 100%;
-        /* Set width to 100% to take full width */
         box-sizing: border-box;
-        /* Include padding and border in the width */
         margin-top: 3rem;
     }
 
@@ -429,8 +410,6 @@
 
     /* find donor page :-  */
     #contact-tab-pane {
-
-        /* background-color:#efefef; */
         background-color: #eee;
         width: 100%;
         position: absolute;
@@ -440,7 +419,6 @@
     .container1 {
         padding: 20px;
         background-color: #fff;
-        /* box-shadow: 10px 12px 14px rgba(0, 0, 0, 0.1); */
         box-shadow: 1px 3px 14px 10px rgba(0, 0, 0, 0.1);
         border-radius: 15px;
         min-width: 500px;
@@ -450,7 +428,6 @@
         top: 6rem;
         margin: auto;
         height: 210vh;
-        /* height: max-content;  */
         margin-bottom: 10rem;
     }
 
@@ -469,7 +446,6 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        /* margin-top: 35px; */
         position: relative;
         top: 5rem;
     }
@@ -554,12 +530,10 @@
         border: 1px solid #ddd;
         border-radius: 5px;
         width: 300px;
-        /* background-color: (244, 215, 215); */
     }
 
     .search-button {
         padding: 10px;
-        /* background-color: #007bff; */
         background-color: red;
         color: #fff;
         border: none;
@@ -571,7 +545,6 @@
     }
 
     .search-button:hover {
-        /* background-color: #0069d9; */
         background-color: #0069d9;
     }
 
@@ -878,7 +851,7 @@
                         <img src="man.jpg" alt="Donor 1">
                         <h3>MD. Nasiruddin</h3>
                         <p>Blood Group: AB+</p>
-                        <p>Location  : Punjab</p>
+                        <p>Location : Punjab</p>
                         <div class="button-group">
                             <button class="button">Request Blood</button>
                         </div>
@@ -887,7 +860,7 @@
                         <img src="man6.jpg" alt="Donor 2">
                         <h3>Mr. Sumit Kumar</h3>
                         <p>Blood Group: A+</p>
-                        <p>Location  : Haryana</p>
+                        <p>Location : Haryana</p>
                         <div class="button-group">
                             <button class="button">Request Blood</button>
                         </div>
@@ -896,7 +869,7 @@
                         <img src="man2.avif" alt="Donor 3">
                         <h3>Mr. Anurag Kumar</h3>
                         <p>Blood Group: O-</p>
-                        <p>Location  : Chandigarh</p>
+                        <p>Location : Chandigarh</p>
                         <div class="button-group">
                             <button class="button">Request Blood</button>
                         </div>
@@ -905,7 +878,7 @@
                         <img src="man2.avif" alt="Donor 3">
                         <h3>Mr. Anurag Kumar</h3>
                         <p>Blood Group: O-</p>
-                        <p>Location  : Chandigarh</p>
+                        <p>Location : Chandigarh</p>
                         <div class="button-group">
                             <button class="button">Request Blood</button>
                         </div>
@@ -914,7 +887,7 @@
                         <img src="man2.avif" alt="Donor 3">
                         <h3>Mr. Anurag Kumar</h3>
                         <p>Blood Group: O-</p>
-                        <p>Location  : Chandigarh</p>
+                        <p>Location : Chandigarh</p>
                         <div class="button-group">
                             <button class="button">Request Blood</button>
                         </div>
@@ -923,7 +896,7 @@
                         <img src="man2.avif" alt="Donor 3">
                         <h3>Mr. Anurag Kumar</h3>
                         <p>Blood Group: O-</p>
-                        <p>Location  : Chandigarh</p>
+                        <p>Location : Chandigarh</p>
                         <div class="button-group">
                             <button class="button">Request Blood</button>
                         </div>
@@ -941,7 +914,7 @@
             </div>
         </div>
 
-
+        {{!-- history page  --}}
 
         <div class="tab-pane fade" id="history-tab-pane" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
             <h1>History Page</h1>
@@ -983,4 +956,23 @@
             console.error('Error:', error);
         }
     });
+
+    // logout user :- 
+    let icon = document.querySelector(".bx-log-in");
+    icon.addEventListener("click", logout);
+
+    async function logout() {
+        try {
+            const response = await fetch('/logout', { method: "post" })
+            if (response.ok) {
+                window.location.href = '/'; 
+            } else {
+                console.error("Logout failed with status:", response.status);
+            }
+        }
+        catch (error) {
+            console.log("Logout failed:", error); 
+        }
+    }
+
 </script>

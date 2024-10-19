@@ -197,7 +197,6 @@ app.use(express.static('public'));
 const templatePath =  path.join(__dirname , "./templates/views");
 const PartialsPath =  path.join(__dirname , "./templates/partials");
 
-
 app.set("view engine", "hbs"); 
 app.set("views", templatePath); 
 hbs.registerPartials(PartialsPath);
@@ -339,6 +338,11 @@ app.post('/submitDonorInfo', upload.single('image'), async (req, res) => {
     }
 });
 
+// logout user :- 
+app.post('/logout', (req, res)=>{
+    res.sendFile(path.join(__dirname,'public','index.html')); 
+})
+
 app.get('/userPage', (req, res) => {
     res.render('UserPage');
 });
@@ -356,3 +360,4 @@ app.get('/adminPage', (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
 });
+
