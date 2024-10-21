@@ -169,33 +169,16 @@ const bcrypt = require('bcrypt');
 const path = require('path'); 
 const hbs = require("hbs"); 
 const app = express();
-const upload = require("./uploads") ;
-// const fs = require("fs"); 
-// const multer = require("multer"); 
+const multer = require("multer"); 
+// const upload = multer({dest : "uploads/"});
 
-// const uploadDir = path.join(__dirname, 'uploads');
-// if (!fs.existsSync(uploadDir)) {
-//     fs.mkdirSync(uploadDir);
-// }
-
-// const storage = multer.diskStorage({
-//     destination: (req, file , cb) =>{
-//         cb(null, uploadDir); 
-//     }, 
-//     filename: (req, file, cb)=>{
-//         cb(null , Date.now() + path.extname(file.originalname)); 
-//     }
-// })
-// const upload = multer({storage : storage }); 
-// app.use('/uploads', express.static(uploadDir));
-
-app.use("/uploads" , express.static("uploads")); 
 app.use(express.json()); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public')); 
 const templatePath =  path.join(__dirname , "./templates/views");
 const PartialsPath =  path.join(__dirname , "./templates/partials");
+
 
 app.set("view engine", "hbs"); 
 app.set("views", templatePath); 
@@ -204,6 +187,17 @@ hbs.registerPartials(PartialsPath);
 // Import models from mongoose.js
 const { User, Donor, Admin} = require('./routes/mongoose');
 const {donorInfo} = require("./routes/donorRoutes"); 
+
+const storage = multer.diskStorage({
+    destination : function (req, file , cb){
+        return cb(null, "./uploads"); 
+    },
+    filename : function(req, file, cb){
+        return cb(null, `${Date.now()}-${file.originalname}`);
+    },
+}); 
+
+const upload = multer({ storage: storage });
 
 app.post('/register', async (req, res) => {
     const { name, email, password, role, gender, contact } = req.body;
@@ -297,16 +291,8 @@ app.post('/login', async (req, res) => {
         res.send(`<h1>Error: ${error.message}</h1>`);
     }
 });
-app.post('/submitDonorInfo', upload.single('image'), async (req, res) => {
-    // console.log('File:', req.file); 
-    // console.log('Body:', req.body);
-    const {name, email, gender, contact, age, dateOfBirth, idProof, address, city, district, state, pincode, bloodGroup, donationHistory, medicalHistory, surgeryHistory, diseases } = req.body;
-    
-    // const imagePath = '/uploads/' + req.file.filename;
-
-    if(!req.file){
-        return res.status(400).send({message : "No file uploaded"}); 
-    }
+app.post('/submitDonorInfo', async (req, res) => {
+    const { name, email, gender, contact, age, dateOfBirth, idProof, address, city, district, state, pincode, bloodGroup, donationHistory, medicalHistory, surgeryHistory, diseases } = req.body;
 
     try {
         const newDonorInfo = await donorInfo.create({
@@ -326,11 +312,8 @@ app.post('/submitDonorInfo', upload.single('image'), async (req, res) => {
             donationHistory,
             medicalHistory,
             surgeryHistory,
-            diseases,
-            image : req.file.path,
+            diseases
         });
-        // console.log(newDonorInfo);
-        
         res.status(201).send({ message: 'Donor information submitted successfully' });
     } catch (error) {
         console.error(error);
@@ -339,8 +322,18 @@ app.post('/submitDonorInfo', upload.single('image'), async (req, res) => {
 });
 
 // logout user :- 
-app.post('/logout', (req, res)=>{
-    res.sendFile(path.join(__dirname,'public','index.html')); 
+app.get("/logout" , (req, res)=>{
+    res.sendFile(path.join(__dirname ,'public' ,'index.html')); 
+}) 
+
+// upload picture :- 
+app.post("/uploads", upload.single('image'), (req, res)=>{
+    if (!req.file) {
+        return res.status(400).send({ message: 'No file uploaded.' });
+    }
+    console.log(req.body); 
+    console.log(req.file); 
+    return res.sendFile("AdminPage"); 
 })
 
 app.get('/userPage', (req, res) => {
@@ -360,4 +353,3 @@ app.get('/adminPage', (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on http://localhost:3000');
 });
-
