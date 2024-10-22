@@ -333,7 +333,7 @@ app.post("/uploads", upload.single('image'), (req, res)=>{
     }
     console.log(req.body); 
     console.log(req.file); 
-    return res.sendFile("AdminPage"); 
+    // return res.sendFile("AdminPage"); 
 })
 
 app.get('/userPage', (req, res) => {
@@ -342,7 +342,7 @@ app.get('/userPage', (req, res) => {
 
 app.get('/donorPage', (req, res) => {
     console.log("hi");
-    res.render('C:\Users\sneha\Desktop\prepare projects\Blood Donation MERN\templates\views\DonorPage.hbs');
+    res.render('DonorPage');
 });
 
 app.get('/adminPage', (req, res) => {

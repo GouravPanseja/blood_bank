@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            background: linear-gradient(to bottom, #f0f8ff, #fef5e7);
+            margin: 0;
+            padding: 0;
+        }
+        .events-container {
+            width: 90%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #fdfbfb, #ebedee);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #2f4f4f;
+        }
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            background-color: #f7f7f7;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .filters label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: #4b0082;
+        }
+        .filters input, .filters select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #dcdcdc;
+            width: 150px;
+        }
+        #events-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .event-item {
+            background-color: #d1e8e2;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .event-item:hover {
+            transform: translateY(-5px);
+        }
+        .event-item h2 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #3b3b3b;
+        }
+        .event-item p {
+            margin: 5px 0;
+            font-size: 1.1em;
+            color: #6b6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="events-container">
+        <h1>Upcoming Events</h1>
+        <div class="filters">
+            <label for="date">Date:</label>
+            <input type="month" id="date" name="date">
+            
+            <label for="type">Event Type:</label>
+            <select id="type">
+                <option value="all">All</option>
+                <option value="congress">ISBT Congress</option>
+                <option value="webinar">Webinar</option>
+                <option value="external">External Event</option>
+            </select>
+            
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="Enter location">
+        </div>
+        <div id="events-list">
+            <!-- Events will be dynamically inserted here -->
+        </div>
+    </div>
+    
+    <script>
+        const events = [
+            { title: "ISBT Webinar", date: "2024-10-16", type: "webinar", location: "Online" },
+            { title: "AfSBT Educational Webinars", date: "2024-10-17", type: "webinar", location: "Online" },
+            { title: "10th Molecular Blood Group Forum", date: "2024-11-04", type: "external", location: "Frankfurt" },
+            { title: "TRANSCON 2024", date: "2024-11-21", type: "external", location: "Ahmedabad" },
+        ];
+
+        document.getElementById("date").addEventListener("input", filterEvents);
+        document.getElementById("type").addEventListener("change", filterEvents);
+        document.getElementById("location").addEventListener("input", filterEvents);
+
+        function filterEvents() {
+            const dateValue = document.getElementById("date").value;
+            const typeValue = document.getElementById("type").value;
+            const locationValue = document.getElementById("location").value.toLowerCase();
+
+            const filteredEvents = events.filter(event => {
+                return (!dateValue || event.date.startsWith(dateValue)) &&
+                       (typeValue === "all" || event.type === typeValue) &&
+                       (!locationValue || event.location.toLowerCase().includes(locationValue));
+            });
+
+            displayEvents(filteredEvents);
+        }
+
+        function displayEvents(eventsList) {
+            const eventsContainer = document.getElementById("events-list");
+            eventsContainer.innerHTML = "";
+            if (eventsList.length === 0) {
+                eventsContainer.innerHTML = "<p>No events found.</p>";
+            } else {
+                eventsList.forEach(event => {
+                    const eventItem = document.createElement("div");
+                    eventItem.classList.add("event-item");
+                    eventItem.innerHTML = `
+                        <h2>${event.title}</h2>
+                        <p>Date: ${event.date}</p>
+                        <p>Location: ${event.location}</p>
+                    `;
+                    eventsContainer.appendChild(eventItem);
+                });
+            }
+        }
+
+        window.onload = () => displayEvents(events);
+    </script>
+</body>
+</html>

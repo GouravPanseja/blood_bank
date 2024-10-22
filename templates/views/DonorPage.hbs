@@ -27,6 +27,7 @@
         z-index: 10;
         position: fixed;
         width: 100%;
+        top: 0px;
     }
 
     .navbar-brand,
@@ -567,92 +568,98 @@
 
 
     /* history page */
-    #history-tab-pane {
-        /* background-color: #f9f9f9; */
-        width: 100%;
-        height: 100vh;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+
+    #tab-pane {
+        margin-top: 2rem;
     }
 
-    .heading {
-        text-align: center;
-        padding: 20px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: #333;
-        margin-top: 5rem;
-    }
-
+    /* Wrapper to center the table */
     .table-wrapper {
-        margin: auto;
-        width: 80%;
-        background-color: #fff;
+        width: 100%;
+        margin: 20px auto;
+        overflow-x: auto;
+        border: 1px solid #ddd;
         border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        margin-top: inherit;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        top: 10rem;
     }
 
+    /* Style the table */
     table {
         width: 100%;
         border-collapse: collapse;
-        background-color: #fff;
-        cursor: pointer;
-        text-align: center;
-    }
-
-    .table-head th {
-        background-color: #4CAF50;
-        color: white;
-        padding: 15px;
-        font-size: 16px;
-        text-transform: uppercase;
-        border: 1px solid #d5d3d3;
-    }
-
-    .table-content td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .table-content tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    .table-content tr:nth-child(even) {
+        font-family: 'Arial', sans-serif;
         background-color: #f9f9f9;
     }
 
-    .table-content tr:nth-child(odd) {
-        background-color: #fff;
+    thead {
+        background-color: #f44336;
+        color: white;
     }
 
-    td,
+    th,
+    td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
     th {
-        padding: 15px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        font-size: 14px;
+        color: #333;
+    }
+
+    button#loadMoreHistory {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button#loadMoreHistory:hover {
+        background-color: #d32f2f;
+    }
+
+    /* Responsive table */
+    @media (max-width: 768px) {
+
+        th,
+        td {
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+    }
+
+    .heading {
+        position: absolute;
+        top: 6rem;
         text-align: center;
     }
-
-    @media (max-width: 768px) {
-        .table-wrapper {
-            width: 95%;
-        }
-
-        .heading {
-            font-size: 22px;
-        }
-
-        td,
-        th {
-            font-size: 12px;
-            padding: 10px;
-        }
-    }
-    
 </style>
 
 <body>
@@ -935,18 +942,16 @@
                     </div>
                 </div>
                 <div class="results">
-
+                    <button id="loadMoreDonors" style="display:none;">Load More Donors</button>
                 </div>
             </div>
         </div>
 
 
-        <!-- history page  -->
+        <!-- History page  -->
 
         <div class="tab-pane fade" id="history-tab-pane" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
-            <div>
-                <h1 class="heading">My Donation History </h1>
-            </div>
+            <h1 class="heading">My Donations </h1>
             <div class="table-wrapper">
                 <table border="1">
                     <thead class="table-head">
@@ -959,109 +964,100 @@
                         <th>Status</th>
                     </thead>
                     <tbody class="table-content">
-                        <tr>
-                            <td>1</td>
-                            <td>Sneha</td>
-                            <td>Diabetes</td>
-                            <td>O+</td>
-                            <td>2</td>
-                            <td>21/10/2024</td>
-                            <th>Rejected</th>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
         </div>
 
     </div>
-</body>
-<script>
-    console.log("hi");
-    const form = document.getElementById('myForm');
+    <script>
 
-    form.addEventListener('submit', async function (e) {
-        console.log("hi");
-        e.preventDefault();
+        const form = document.getElementById('myForm');
 
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        form.addEventListener('submit', async function (e) {
+            console.log("hi");
+            e.preventDefault();
 
-        console.log("form data ", data);
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
 
-        const currentDate = new Date().toLocaleDateString();
+            console.log("form data ", data);
 
-        if (selectedImageURL) {
-            data.image = selectedImageURL; // Store the image URL in the data
-        }
+            const currentDate = new Date().toLocaleDateString();
 
-        try {
-            const response = await fetch('http://localhost:3000/submitDonorInfo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                console.log("fetch response unsuccessful");
+            if (selectedImageURL) {
+                data.image = selectedImageURL;
             }
 
-            const result = await response.json();
-            console.log('Success:', result);
+            try {
+                const response = await fetch('http://localhost:3000/submitDonorInfo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
 
-            // create donor card :- 
-            createDonorCard(data);
+                if (!response.ok) {
+                    console.log("fetch response unsuccessful");
+                }
 
-            appendToHistory(data, currentDate); 
+                const result = await response.json();
+                console.log('Success:', result);
 
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    });
+                // create donor card :- 
+                createDonorCard(data);
 
-    // logout user :- 
-    let icon = document.querySelector(".bx-log-in");
-    icon.addEventListener("click", logout);
+                appendToHistory(data, currentDate);
 
-    async function logout() {
-        try {
-            const response = await fetch('/logout', { method: "post" })
-            if (response.ok) {
-                window.location.href = '/';
-            } else {
-                console.error("Logout failed with status:", response.status);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // logout user :- 
+        let icon = document.querySelector(".bx-log-in");
+        icon.addEventListener("click", logout);
+
+        async function logout() {
+            try {
+                const response = await fetch('/logout', { method: "post" })
+                if (response.ok) {
+                    window.location.href = '/';
+                } else {
+                    console.error("Logout failed with status:", response.status);
+                }
+            }
+            catch (error) {
+                console.log("Logout failed:", error);
             }
         }
-        catch (error) {
-            console.log("Logout failed:", error);
-        }
-    }
 
-    // adding image in the profile photo :- 
-    const imageInput = document.getElementById('imageInput');
-    const profileImage = document.querySelector('#pic-container img');
-    let selectedImageURL = '';
+        // adding image in the profile photo :- 
+        const imageInput = document.getElementById('imageInput');
+        const profileImage = document.querySelector('#pic-container img');
+        let selectedImageURL = '';
 
-    imageInput.addEventListener('change', function (event) {
-        const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                selectedImageURL = e.target.result;
-                profileImage.src = selectedImageURL;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+        imageInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    selectedImageURL = e.target.result;
+                    profileImage.src = selectedImageURL;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
-    // create donor card :- 
-    function createDonorCard(data) {
-        const resultsContainer = document.querySelector('.results');
+        // create donor card :- 
+        function createDonorCard(data) {
+            const resultsContainer = document.querySelector('.results');
 
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
         <img src="${data.image || selectedImageURL || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'}" alt="Donor Image">
         <h3>${data.name}</h3>
         <p>Blood Group: ${data.bloodgroup}</p>
@@ -1069,118 +1065,122 @@
         <div class="button-group">
             <button class="button">Request Blood</button>
         </div>`;
-        resultsContainer.appendChild(card);
+            resultsContainer.appendChild(card);
+            saveToLocalStorage(data);
+        }
 
-        saveToLocalStorage(data);
-    }
+        function saveToLocalStorage(data) {
+            const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
+            existingData.push(data);
+            localStorage.setItem('donorCards', JSON.stringify(existingData));
+        }
 
-    function saveToLocalStorage(data) {
-        const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
-        existingData.push(data);
-        localStorage.setItem('donorCards', JSON.stringify(existingData));
-    }
+        const DONORS_PER_PAGE = 5; // Number of donor cards to load per page
+        const HISTORY_PER_PAGE = 5; // Number of history entries to load per page
+        let currentDonorPage = 0;
+        let currentHistoryPage = 0;
 
-    function loadDonorCards() {
-        const resultsContainer = document.querySelector('.results');
-        resultsContainer.innerHTML = '';
-        const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
-        existingData.forEach(data => {
-            createDonorCard(data);
-        });
-    }
-    //window.onload = loadDonorCards;
+        function loadDonorCards(page = 0) {
+            const resultsContainer = document.querySelector('.results');
+            resultsContainer.innerHTML = ''; // Clear existing cards
+            const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
+            const start = page * DONORS_PER_PAGE;
+            const end = start + DONORS_PER_PAGE;
+            const donorsToDisplay = existingData.slice(start, end);
 
-    // search functionality :- 
+            donorsToDisplay.forEach(data => {
+                createDonorCard(data);
+            });
 
-    const searchInput = document.getElementById('searchInput');
-    const sortDropdown = document.getElementById('sort-dropdown');
+            // Show "Load More" button if there are more donors
+            const loadMoreButton = document.getElementById('loadMoreDonors');
+            loadMoreButton.style.display = end < existingData.length ? 'block' : 'none';
 
-    searchInput.addEventListener('input', filterDonorCards);
-    sortDropdown.addEventListener('change', filterDonorCards);
+        }
 
-    function filterDonorCards() {
-        const searchText = searchInput.value.toLowerCase();
-        const selectedBloodGroup = sortDropdown.value;
+        // search functionality :- 
 
-        const donorCards = document.querySelectorAll('.card');
+        const searchInput = document.getElementById('searchInput');
+        const sortDropdown = document.getElementById('sort-dropdown');
 
-        donorCards.forEach(card => {
-            const donorLocation = card.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
-            const donorBloodGroup = card.querySelector('p:nth-of-type(1)').textContent;
+        searchInput.addEventListener('input', filterDonorCards);
+        sortDropdown.addEventListener('change', filterDonorCards);
 
-            const matchesLocation = donorLocation.includes(searchText);
-            const matchesBloodGroup = selectedBloodGroup === 'select' || donorBloodGroup.includes(selectedBloodGroup);
+        function filterDonorCards() {
+            const searchText = searchInput.value.toLowerCase();
+            const selectedBloodGroup = sortDropdown.value;
 
-            if (matchesLocation && matchesBloodGroup) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
+            const donorCards = document.querySelectorAll('.card');
 
-    // adding donors initially :-
+            donorCards.forEach(card => {
+                const donorLocation = card.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+                const donorBloodGroup = card.querySelector('p:nth-of-type(1)').textContent;
 
-    const initialDonors = [
-        {
-            name: "Akansha Garg",
-            bloodgroup: "A+",
-            city: "Uttar Pradesh",
-            image: "https://media.istockphoto.com/id/1369508766/photo/beautiful-successful-latin-woman-smiling.jpg?s=612x612&w=0&k=20&c=LoznG6eGT42_rs9G1dOLumOTlAveLpuOi_U755l_fqI="
-        },
-        {
-            name: "Neelam Gupta",
-            bloodgroup: "O-",
-            city: "Chandigarh",
-            image: "https://img.freepik.com/free-photo/human-face-expressions-emotions-positive-joyful-young-beautiful-female-with-fair-straight-hair-casual-clothing_176420-15188.jpg?semt=ais_hybrid"
-        },
-        {
-            name: "Shanaya Kapoor",
-            bloodgroup: "AB+",
-            city: "Haryana",
-            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGFwcHklMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D"
-        },
-        {
-            name: "Anurag Kumar",
-            bloodgroup: "O+",
-            city: "Chattisgarh",
-            image: "https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
-        },
-        {
-            name: "Viren Kumar",
-            bloodgroup: "AB-",
-            city: "Bihar",
-            image: "https://media.istockphoto.com/id/1364917563/photo/businessman-smiling-with-arms-crossed-on-white-background.jpg?s=612x612&w=0&k=20&c=NtM9Wbs1DBiGaiowsxJY6wNCnLf0POa65rYEwnZymrM="
-        },
-        {
-            name: "Hitesh Singla",
-            bloodgroup: "A-",
-            city: "Orissa",
-            image: "https://thumbs.dreamstime.com/b/portrait-handsome-smiling-young-man-folded-arms-smiling-joyful-cheerful-men-crossed-hands-isolated-studio-shot-172869765.jpg"
-        },
-    ];
+                const matchesLocation = donorLocation.includes(searchText);
+                const matchesBloodGroup = selectedBloodGroup === 'select' || donorBloodGroup.includes(selectedBloodGroup);
 
-    // Save the data to localStorage , if not already present
-    if (!localStorage.getItem('donorCards')) {
-        localStorage.setItem('donorCards', JSON.stringify(initialDonors));
-    }
+                if (matchesLocation && matchesBloodGroup) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
+        // adding donors initially :-
 
+        const initialDonors = [
+            {
+                name: "Akansha Garg",
+                bloodgroup: "A+",
+                city: "Uttar Pradesh",
+                image: "https://media.istockphoto.com/id/1369508766/photo/beautiful-successful-latin-woman-smiling.jpg?s=612x612&w=0&k=20&c=LoznG6eGT42_rs9G1dOLumOTlAveLpuOi_U755l_fqI="
+            },
+            {
+                name: "Neelam Gupta",
+                bloodgroup: "O-",
+                city: "Chandigarh",
+                image: "https://img.freepik.com/free-photo/human-face-expressions-emotions-positive-joyful-young-beautiful-female-with-fair-straight-hair-casual-clothing_176420-15188.jpg?semt=ais_hybrid"
+            },
+            {
+                name: "Shanaya Kapoor",
+                bloodgroup: "AB+",
+                city: "Haryana",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGFwcHklMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D"
+            },
+            {
+                name: "Anurag Kumar",
+                bloodgroup: "O+",
+                city: "Chattisgarh",
+                image: "https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+            },
+            {
+                name: "Viren Kumar",
+                bloodgroup: "AB-",
+                city: "Bihar",
+                image: "https://media.istockphoto.com/id/1364917563/photo/businessman-smiling-with-arms-crossed-on-white-background.jpg?s=612x612&w=0&k=20&c=NtM9Wbs1DBiGaiowsxJY6wNCnLf0POa65rYEwnZymrM="
+            },
+        ];
 
+        // Save the data to localStorage , if not present
+        if (!localStorage.getItem('donorCards')) {
+            localStorage.setItem('donorCards', JSON.stringify(initialDonors));
+        }
 
-// adding history to the page :- 
-    function appendToHistory(data, date) {
-        const tableContent = document.querySelector('.table-content');
+        // adding history to the page :- 
+        function appendToHistory(data, date) {
+            const tableContent = document.querySelector('.table-content');
 
-        // Determine the status based on disease entry
-        const status = data.disease ? 'Rejected' : 'Approved';
+            // Determine the status based on disease entry
+            const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';
 
-        // Get the serial number for the new entry
-        const serialNo = tableContent.querySelectorAll('tr').length + 1;
+            // Get the serial number for the new entry
+            const serialNo = tableContent.querySelectorAll('tr').length + 1;
 
-        // Create a new table row
-        const row = document.createElement('tr');
-        row.innerHTML = `
+            // Create a new table row
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
         <td>${serialNo}</td>
         <td>${data.name}</td>
         <td>${data.disease || 'N/A'}</td>
@@ -1190,36 +1190,40 @@
         <th>${status}</th>
     `;
 
-        // Append the new row to the table body
-        tableContent.appendChild(row);
+            // Append the new row to the table body
+            tableContent.appendChild(row);
 
-        // Save the updated history to localStorage
-        saveHistoryToLocalStorage({
-            serialNo,
-            name: data.name,
-            disease: data.disease || 'N/A',
-            bloodgroup: data.bloodgroup,
-            units: data.units || 'N/A',
-            date,
-            status
-        });
-    }
+            // Save the updated history to localStorage
+            saveHistoryToLocalStorage({
+                serialNo,
+                name: data.name,
+                disease: data.disease || 'N/A',
+                bloodgroup: data.bloodgroup,
+                units: data.units || 'N/A',
+                date,
+                status
+            });
+        }
 
-    // Save the donation history to localStorage
-    function saveHistoryToLocalStorage(entry) {
-        const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
-        history.push(entry);
-        localStorage.setItem('donationHistory', JSON.stringify(history));
-    }
+        // Save the donation history to localStorage
+        function saveHistoryToLocalStorage(entry) {
+            const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
+            history.push(entry);
+            localStorage.setItem('donationHistory', JSON.stringify(history));
+        }
 
-    // Load the donation history from localStorage on page load
-    function loadDonationHistory() {
-        const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
-        const tableContent = document.querySelector('.table-content');
+        // Load the donation history from localStorage on page load
+        function loadDonationHistory(page = 0) {
+            const tableContent = document.querySelector('.table-content');
+            tableContent.innerHTML = '';
+            const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
+            const start = page * HISTORY_PER_PAGE;
+            const end = start + HISTORY_PER_PAGE;
+            const historyToDisplay = history.slice(start, end);
 
-        history.forEach(entry => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+            historyToDisplay.forEach(entry => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
             <td>${entry.serialNo}</td>
             <td>${entry.name}</td>
             <td>${entry.disease}</td>
@@ -1228,18 +1232,17 @@
             <td>${entry.date}</td>
             <th>${entry.status}</th>
         `;
-            tableContent.appendChild(row);
+                tableContent.appendChild(row);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadDonationHistory();
+            loadDonorCards();
         });
-    }
 
-    /*
-    // Load history on page load
-    window.onload = function () {
-        loadDonationHistory();
-        loadDonorCards();  // assuming you want donor cards to load too
-    };
-    */
 
-</script>
+    </script>
+</body>
 
 </html>
