@@ -978,7 +978,14 @@
             e.preventDefault();
             alert("Form submitted successfully !!"); 
 
+            // creates a form data object that collects all the input data from the form fields, in-built js object 
+            //stored as a key-value pair where the key is the name attribute of the form field, and the value is the user's input.
+
             const formData = new FormData(form);
+            
+            // Converts the FormData object into a plain JavaScript object . Each form field becomes a key-value pair in the data object.
+            // field's name is a key and its corresponding input is the value.
+
             const data = Object.fromEntries(formData.entries());
 
             console.log("form data ", data);
@@ -994,11 +1001,12 @@
 
             try {
                 const response = await fetch('http://localhost:3000/submitDonorInfo', {
-                    method: 'POST',
+                    // it is where the data is sent 
+                    method: 'POST', // used to send data to the server
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json', // contains json data
                     },
-                    body: JSON.stringify(data),
+                    body: JSON.stringify(data), 
                 });
 
                 if (!response.ok) {
@@ -1024,6 +1032,8 @@
 
         async function logout() {
             try {
+                // Uses the Fetch API to send a POST request to the server at the /logout endpoint.
+
                 const response = await fetch('/logout', { method: "post" })
                 if (response.ok) {
                     window.location.href = '/';
@@ -1045,10 +1055,13 @@
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
+                //  The FileReader API is used to read the contents of files (in this case, the image file) as a URL that can be used in the browser.
+                //This reader object will help read the file and convert it into a format that can be displayed as an image.
                 reader.onload = function (e) {
-                    selectedImageURL = e.target.result;
+                    selectedImageURL = e.target.result; // This contains the result of reading the file.
                     profileImage.src = selectedImageURL;
                 };
+                // this tells the FileReader to read the contents of the file as a data URL. Once the reading is complete, the onload event will be triggered, and the image will be displayed.
                 reader.readAsDataURL(file);
             }
         });
@@ -1093,11 +1106,6 @@
             donorsToDisplay.forEach(data => {
                 createDonorCard(data);
             });
-
-            // Show "Load More" button if there are more donors
-            const loadMoreButton = document.getElementById('loadMoreDonors');
-            loadMoreButton.style.display = end < existingData.length ? 'block' : 'none';
-
         }
 
         // search functionality :- 
@@ -1172,9 +1180,6 @@
         // adding history to the page :- 
         function appendToHistory(data, date, status) {
             const tableContent = document.querySelector('.table-content');
-
-            // Determine the status based on disease entry
-            /*const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';*/
 
             // Determine the value for units based on the status
             const unitsDisplay = status === 'Rejected' ? 'N/A' : data.units || 'N/A';
