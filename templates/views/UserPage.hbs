@@ -9,20 +9,20 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    {{!-- <link rel="stylesheet" href="community.css"> --}}
+    <link rel="stylesheet" href="community.css">
    
 
 </head>
 <style>
 
-
 body{
-  background-image: url('https://img.freepik.com/free-vector/grunge-watercolor-background-using-pastel-colours_1048-6530.jpg?ga=GA1.1.2002533819.1724952575&semt=ais_hybrid');
+   background-image: url('https://img.freepik.com/free-vector/grunge-watercolor-background-using-pastel-colours_1048-6530.jpg?ga=GA1.1.2002533819.1724952575&semt=ais_hybrid');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   
-}.navbar {
+}
+.navbar {
   margin-top: 5vh;
   background-color: #000; 
 }
@@ -151,6 +151,7 @@ body{
     position:fixed;
     top:0;
     right: 0;
+    /* height: 5vh; */
     background-color: black;
     border-radius: 10px;
     z-index:1000;
@@ -176,7 +177,7 @@ body{
     display: block;
     color: white  !important; 
     text-align: center;
-    // padding: 14px 16px;
+     /padding: 14px 16px;/
     text-decoration: none;
 }
 
@@ -277,6 +278,8 @@ body{
 }
 
 
+
+
 #idd{
     width: 50px;
   height: 50px;
@@ -349,8 +352,8 @@ body{
 
 .fixed-text {
     position: absolute;
-    bottom: 40vh; 
-    left: 18%; 
+    bottom: 32vh; 
+    left: 48%; 
     transform: translateX(-50%);
     background-color: #FF5733;
     padding: 20px;
@@ -537,7 +540,7 @@ body{
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background-color: rgba(255, 165, 0, 0.8); /* Vibrant Orange */
+    background-color: rgba(255, 165, 0, 0.8); 
     opacity: 0;
     animation: spread 2s infinite;
   }
@@ -1334,7 +1337,7 @@ section {
   top: -50px;
   left: 30%;
   width: 30%;
-  height: 5vh%;
+  height: 5vh;
   background-color: red;
   color: #ddd;
   text-align: center;
@@ -1392,6 +1395,200 @@ section {
         font-size: 1.2rem;
     }
 }
+
+.box{
+    border: 1px solid #ddd;
+    width:250px;
+    background-color: #f0f0f0;
+    height:300px;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 15%;
+    margin-left: 10px;
+    border-radius: 10px;
+    /* margin: 10px; */
+    overflow:visible;
+    position:relative;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+body{
+    background-color: #FFD7BE; 
+}
+
+
+.des{
+    color: black;
+    text-align: center;
+    padding:20px;
+    margin-top: 80px;
+}
+.des1{
+    font-weight: 200;
+    margin-bottom: 100px;
+    margin-left: 110px;
+    margin-top: 50px;
+    text-align: center;
+    margin-right: 80px;
+    color: red;
+}
+
+.container11{
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    /* white-space: nowwrap; */
+    overflow-x: auto;
+    padding: 10px;
+    margin-top: 20px;
+    /* flex-wrap: nowrap; */
+    width: 100%;
+    scroll-behavior: smooth;
+} 
+.slider-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 75%;
+    transform: translateY(-50%);
+    background-color: #231b1b;
+    border: none;
+    color: rgb(225, 215, 215);
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: #ddd;
+}
+.user{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit: cover;
+    margin-left: 150px;
+    /* transform: translateY(-90%); */
+    position: absolute;
+    /* top: 5px;
+    left: 50%; */
+    transform: translate(-50%, -55%);
+
+    
+}
+
+
+
+.review-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+
+
+#review-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+    transition: border-color 0.3s ease;
+}
+
+#review-textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.submit-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+
+
+.review-section {
+    text-align: center;
+  }
+  
+  .add-review-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .review-box {
+    display: none;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  .review-box.show {
+    display: block;
+  }
+
+  .box {
+    margin-bottom: 20px;
+  }
+  
+  .user {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .des {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .des1 {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .navbar-nav .nav-link.active{
+    color: white;
+  }
 </style>
 <body>
     <div class="border-container">
@@ -1426,22 +1623,22 @@ section {
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
                             data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                            aria-selected="true">Home</button>
+                            aria-selected="true" onclick="window.location.href='index.html'">Home</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
                             data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
-                            aria-selected="false">News</button>
+                            aria-selected="false" onclick="window.location.href='news.html'">News</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
                             data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
-                            aria-selected="false">Events</button>
+                            aria-selected="false" onclick="window.location.href='events.html'">Events</button>
                     </li>
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="history-tab" data-bs-toggle="tab"
                           data-bs-target="#history-tab-pane" type="button" role="tab" aria-controls="history-tab-pane"
-                          aria-selected="false">Profile</button>
+                          aria-selected="false" onclick="window.location.href='profile.html'">Profile</button>
                   </li>
                   <div class="out">
                     <button class="logout-btn"><a href="loginn.html">Logout</a></button>
@@ -1466,10 +1663,10 @@ section {
           <h2 id="popp">Donate Blood</h2>
         </div>
 
-        <div class="cursor-dot"></div>
-        <div class="cursor-outline"></div>
+       
         <div class="main">
           <div class="slider">
+            <button id="prev">&#10094;</button>
             <div class="slide active" style="background-image: url('https://media.istockphoto.com/id/2152863092/photo/the-concept-of-donation-blood-transfusion.jpg?s=612x612&w=0&k=20&c=bbuucu8G_YRn15urnCxejv0QiRSXe-pFdDodXzgRmWU=');">
               <h2 id="quote5" class="mark">The ripple effect of kindness that begins with a single donation can spread far and wide, touching hearts, changing lives, and leaving a lasting legacy</h2>
             </div>
@@ -1489,8 +1686,7 @@ section {
             <div class="slide" style="background-image: url('https://media.istockphoto.com/id/489843264/photo/hand-with-marker-writing-the-word-i-gave-blood.jpg?s=612x612&w=0&k=20&c=lmFuvGstsye3mjTQK3j1zuA44P6IHg5lvk9tGusbTPY=');">
               <h2 id="quote7" class="mark">Giving is not just about donating, it's about making a difference.</h2>
             </div>
-            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+            <button id="next">&#10095;</button>
           </div>  
     <div class="fixed-text">
     <h2 id="fixed">RED CONNECT</h2>
@@ -1624,67 +1820,68 @@ section {
 </div>
 </div>
 
-<!-- 
-//  REVIEWS -SECTION// -->
+
+
 <div class="slider-container" id="rw">
   <button class="prev" onclick="scrollLeft()">&#10094;</button>
 <div class="container11">
-  <div class="box">
-      <img src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid" alt="User Photo" class="user">
-      <h4 class="des">I recently donated blood through this website and had a seamless experience! The process was easy to follow.</h4>
-      <h4 class="des1">Ben Terry, LA</h4>
-  </div>
-  
+<div class="box">
+  <img src="https://img.freepik.com/free-photo/portrait-man-laughing_23-2148859448.jpg?size=338&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid" alt="User Photo" class="user">
+  <h4 class="des">I recently donated blood through this website and had a seamless experience! The process was easy to follow.</h3>
+  <h4 class="des1">Terry, LA</h3>
+</div>
+
   <div class="box">
       <img src="https://media.istockphoto.com/id/1437816897/photo/business-woman-manager-or-human-resources-portrait-for-career-success-company-we-are-hiring.jpg?s=612x612&w=0&k=20&c=tyLvtzutRh22j9GqSGI33Z4HpIwv9vL_MZw_xOE19NQ=" alt="User Photo" class="user">
-      <h4 class="des">I was hesitant to donate blood at first. The online registration process was quick and simple. Great job!</h4>
-      <h4 class="des1">Lisa, New Jersey</h4>
+      <h4 class="des">I was hesitant to donate blood at first.The online registration process was quick and simple.Great job!</h3>
+      <h4 class="des1">Lisa, NewJersey </h3>
   </div>
   
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxkmRuaPPz3SU9A5hYKfhv3-FQoItUW9KYvw&s" alt="User Photo" class="user">
-      <h4 class="des">I was impressed with the website's ease of use and the staff's professionalism. Still, a great experience overall!</h4>
-      <h4 class="des1">Kevin L, California</h4>
-  </div>
-  
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQix0aJcHrZfDqlr0N-xaLne6C5Il5-57DIUw&s" alt="User Photo" class="user">
-      <h4 class="des">This website makes it so easy to find a donation center and schedule an appointment. It was convenient!</h4>
-      <h4 class="des1">Brian H, Manhattan</h4>
-  </div>
-  
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsNWPhXbh68-pBV7iNSR76TAgOVQRSqkuogA&s" alt="User Photo" class="user">
-      <h4 class="des">Quick and simple process. Staff were professional and welcoming. Online scheduling was convenient and easy to use.</h4>
-      <h4 class="des1">Christine, Auckland</h4>
-  </div>
-  
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDCahGwrrLseBREiRTzZFG3Rc7Kei9MzXJnw&s" alt="User Photo" class="user">
-      <h4 class="des">I was impressed with the website's ease of use. Donating blood was a breeze!</h4>
-      <h4 class="des1">Sarah T, Paris</h4>
-  </div>
-  
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlVo69bJcr9oiLiEpJ0kUocl-5N8OoDQUzdA&s" alt="User Photo" class="user">
-      <h4 class="des">The website was user-friendly, and the facility was clean and comfortable and convenient.</h4>
-      <h4 class="des1">Mark S, Toronto</h4>
-  </div>
-  
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyzMFPumLxT7afznZlvtkthdI_hdsHj6nLCA&s" alt="User Photo" class="user">
-      <h4 class="des">Good experience, but online registration was slow. The wait time was a bit long.</h4>
-      <h4 class="des1">Ryan Gostling, Australia</h4>
-  </div>
-  
-  <div class="box">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkuVC41k7VgYAp1XP3tRBsvH0Y5qqnZ3XfiRI27bpjmhKy0WydZXtrZ6nhig&s" alt="User Photo" class="user">
-      <h4 class="des">User-friendly website. Donating blood was a breeze! Highly recommend this website.</h4>
-      <h4 class="des1">Rachael G, San Francisco</h4>
-  </div>
+      <div class="box">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxkmRuaPPz3SU9A5hYKfhv3-FQoItUW9KYvw&s" alt="User Photo" class="user">
+          <h4 class="des">I was impressed with the website's ease of use and the staff's professionalism. Still, a great experience overall!"</h3>
+          <h4 class="des1">Kevin, California </h3>
+      </div>
+          <div class="box">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQix0aJcHrZfDqlr0N-xaLne6C5Il5-57DIUw&s" alt="User Photo" class="user">
+              <h4 class="des">This website makes it so easy to find a donation center and schedule an appointment.it was convenient!</h3>
+             
+              <h4 class="des1">Brian H,Manhattan</h3>
+          </div>
+          <div class="box">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsNWPhXbh68-pBV7iNSR76TAgOVQRSqkuogA&s" alt="User Photo" class="user">
+              <h4 class="des">Quick and simple process. Staff were professional and welcoming. Online scheduling was convenient and easy to use.</h3>
+             
+              <h4 class="des1">Christine, Aucland</h3>
+          </div>
+          <div class="box">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDCahGwrrLseBREiRTzZFG3Rc7Kei9MzXJnw&s" alt="User Photo" class="user">
+              <h4 class="des">I was impressed with the website's ease of use. Donating blood was a breeze!</h3>
+              
+              <h4 class="des1">Sarah, Paris</h3>
+          </div>
+          <div class="box">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlVo69bJcr9oiLiEpJ0kUocl-5N8OoDQUzdA&s" alt="User Photo" class="user">
+              <h4 class="des">The website was user-friendly, and the facility was clean and comfortablea and convenient</h3>
+             
+              <h4 class="des1">Mark S, Toronto</h3>
+          </div>
+          <div class="box">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyzMFPumLxT7afznZlvtkthdI_hdsHj6nLCA&s" alt="User Photo" class="user">
+              <h4 class="des">Good experience, but online registration was slow.The  wait time was a bit long.</h3>
+             
+              <h4 class="des1">Ryan, Austalia</h3>
+          </div>
+          <div class="box">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkuVC41k7VgYAp1XP3tRBsvH0Y5qqnZ3XfiRI27bpjmhKy0WydZXtrZ6nhig&s" alt="User Photo" class="user">
+              <h4 class="des">User-friendly website,Donating blood was a breeze! Highly recommend this website.</h3>
+              
+              <h4 class="des1">Rachael G, San Francisco</h3>
+          </div>
 </div>
-<button class="next" onclick="scrollRight()">&#10095;</button> <!-- Right Arrow -->
+          <button class="next" onclick="scrollRight()">&#10095;</button>
 </div>
+
 
 
 <div class="review-section">
@@ -1695,8 +1892,6 @@ section {
     <button type="submit" class="submit-btn" onclick="addReview()">Submit Review</button>
   </div>
 </div>
-
-
 <!-- footer section  -->
  <section>
   <svg viewBox="0 0 1440 320" class="wave-svg">
@@ -1753,31 +1948,21 @@ section {
 
        
 
-    // cursor javascript
-
-    const cursorDot = document.querySelector("[data-cursor-dot]");
-    const cursorOutline = document.querySelector("[data-cursor-outline]");
-
-    window.addEventListener("mouseover",function(e) {
-      const posX = e.clientX;
-      const posY = e.clientY;
-
-      cursorDot.style.left = ${posX}px;
-      cursorDot.style.top = ${posY}px;
-
-      cursorOutline.style.left = ${posX}px;
-      cursorOutline.style.top = ${posY}px;
-
-    });
+ 
 
 
 
 //   //  POP UP NAVBAR JAVASCRIPT
 
-  window.addEventListener('scroll', function() {
+
+
+let prevScrollY = 0;
+
+window.addEventListener('scroll', () => {
   const scrollPosition = window.scrollY;
-  const scrollDirection = window.scrollY > this.prevScrollY ? 1 : -1;
-  this.prevScrollY = window.scrollY;
+  const scrollDirection = scrollPosition > prevScrollY ? 1 : -1;
+  prevScrollY = scrollPosition;
+
   const popup = document.querySelector('.pop');
 
   if (scrollDirection === 1 && scrollPosition > 200) {
@@ -1791,17 +1976,17 @@ section {
 
 //   // NAVBAR JAVASCRIPT
 
+
   window.addEventListener('scroll', function() {
-  const navbar = document.querySelector('.navbar-expand-lg.navbar-light.bg-light');
-  const scrollPosition = window.scrollY;
-  
- 
-  if (scrollPosition > 200) { 
-    navbar.classList.add('hidden');
-  } else {
-    navbar.classList.remove('hidden');
-  }
-});
+    const navbar = document.querySelector('.navbar-expand-lg');
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 200) {
+      navbar.classList.add('hidden');
+    } else {
+      navbar.classList.remove('hidden');
+    }
+  });
 
 document.addEventListener("DOMContentLoaded", function () {
   const links = document.querySelectorAll('.smaal a');
@@ -1867,46 +2052,49 @@ function toggledrop() {
 document.getElementById('initials').addEventListener('click', toggledrop);
 
 
-// //   SHINY  DOT  //
-document.addEventListener("DOMContentLoaded", () => {
-    const dots = [
-      { x: 100, y: 200 },
-      { x: 300, y: 150 },
-      { x: 500, y: 300 },
-      { x: 700, y: 250 },
-    ];
-  
-    const map = document.getElementById("mapi");
-  
-   
-    if (map) {
-      dots.forEach((dot) => {
-        const dotElement = document.createElement("div");
-        dotElement.classList.add("dot");
-        dotElement.style.top = ${dot.y}px;
-        dotElement.style.left = ${dot.x}px;
-        map.appendChild(dotElement);
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+      const prevButton = document.getElementById('prev');
+      const nextButton = document.getElementById('next');
+      
+      function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+      
+      slides[currentSlide].classList.add('active');
+      
+      let autoSlideInterval;
+      function autoSlide() {
+        changeSlide(1);
+      }
+      
+      prevButton.addEventListener('click', () => {
+        changeSlide(-1);
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(autoSlide, 5000);
       });
-    } else {
-      console.error("Map element not found.");
-    }
-  });
+      
+      nextButton.addEventListener('click', () => {
+        changeSlide(1);
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(autoSlide, 5000);
+      });
+      
+      autoSlideInterval = setInterval(autoSlide, 5000);
+    });
 
 
 
-  let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
 
-function changeSlide(direction) {
-  slides[currentSlide].classList.remove('active');
-  currentSlide = (currentSlide + direction + slides.length) % slides.length; // Wrap around
-  slides[currentSlide].classList.add('active');
-}
 
-setInterval(() => {
-  changeSlide(1);
-}, 5000); 
 
+    // cookie javascript //
 
 document.addEventListener('DOMContentLoaded', function() {
   var cookieConsent = document.getElementById('cookie-consent');
@@ -1934,76 +2122,74 @@ document.querySelectorAll(".dropbtn").forEach(button =>{
 });
 
 
-// //   CURSOR POINTER  ///
+//   CURSOR POINTER  ///
 
-      
-      const customCursor = document.querySelector('.custom-cursor');
 
-document.addEventListener('mousemove', (e) => {
+
+
+//        REVIEwS PAGE    //
+document.addEventListener("DOMContentLoaded", function () {
  
-  customCursor.style.transform = translate(${e.clientX}px, ${e.clientY}px);
-});
+    function scrollLeft() {
+      const container = document.querySelector('.container11');
+      container.scrollBy({ left: -300, behavior: 'smooth' });
+    }
 
+    function scrollRight() {
+      const container = document.querySelector('.container11');
+      container.scrollBy({ left: 300, behavior: 'smooth' });
+    }
 
-//        REVIES PAGE    //
+    function openReviewBox() {
+      document.getElementById("review-box").classList.toggle("show");
+    }
+    function addReview() {
+      const reviewName = document.getElementById("review-name").value;
+      const reviewText = document.getElementById("review-textarea").value;
 
+      if (reviewName && reviewText) {
+        const reviewData = {
+          name: reviewName,
+          text: reviewText
+        };
+        saveReviewToLocalStorage(reviewData);
+        appendReviewToPage(reviewData);
+        document.getElementById("review-box").classList.remove("show");
+        document.getElementById("review-name").value = "";
+        document.getElementById("review-textarea").value = "";
+      } else {
+        alert("Please fill in all fields!");
+      }
+    }
+ function saveReviewToLocalStorage(reviewData) {
+      let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews.push(reviewData);
+      localStorage.setItem("reviews", JSON.stringify(reviews));
+    }
 
-function openReviewBox() {
-  document.getElementById("review-box").classList.toggle("show");
-}
+    function loadReviewsFromLocalStorage() {
+      const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+      reviews.forEach(reviewData => appendReviewToPage(reviewData));
+    }
 
-function addReview() {
-  const reviewName = document.getElementById("review-name").value;
-  const reviewText = document.getElementById("review-textarea").value;
-  
-  if (reviewName && reviewText) {
-    const reviewData = {
-      name: reviewName,
-      text: reviewText
-    };
-    saveReviewToLocalStorage(reviewData);
-    appendReviewToPage(reviewData);
-    document.getElementById("review-box").classList.remove("show");
-    document.getElementById("review-name").value = "";
-    document.getElementById("review-textarea").value = "";
-  } else {
-    alert("Please fill in all fields!");
-  }
-}
+    function appendReviewToPage(reviewData) {
+      const reviewHTML = `
+        <div class="box">
+          <img src="https://via.placeholder.com/150" alt="User Photo" class="user">
+          <h4 class="des">${reviewData.text}</h4>
+          <h4 class="des1">${reviewData.name}</h4>
+        </div>
+      `;
+      document.querySelector('.container11').insertAdjacentHTML("beforeend", reviewHTML);
+    }
 
-function saveReviewToLocalStorage(reviewData) {
-  let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  reviews.push(reviewData);
-  localStorage.setItem("reviews", JSON.stringify(reviews));
-}
-function loadReviewsFromLocalStorage() {
-  const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
-  reviews.forEach(reviewData => appendReviewToPage(reviewData));
-}
-function appendReviewToPage(reviewData) {
-  const reviewHTML = `
-    <div class="box">
-      <img src="https://via.placeholder.com/150" alt="User Photo" class="user">
-      <h4 class="des">${reviewData.text}</h4>
-      <h4 class="des1">${reviewData.name}</h4>
-    </div>
-  `;
-  document.querySelector('.container11').insertAdjacentHTML("beforeend", reviewHTML);
-}
-document.addEventListener("DOMContentLoaded", loadReviewsFromLocalStorage);
+    loadReviewsFromLocalStorage();
 
-//   SCROLLING THROUGH  REVEIWS //
-
-function scrollLeft() {
-    const container = document.querySelector('.container11');
-    container.scrollBy({left: -300, behavior: 'smooth'}); // Scrolls left by 300px
-}
-
-function scrollRight() {
-    const container = document.querySelector('.container11');
-    container.scrollBy({left: 300, behavior: 'smooth'}); // Scrolls right by 300px
-}
-
+    window.scrollLeft = scrollLeft;
+    window.scrollRight = scrollRight;
+    window.openReviewBox = openReviewBox;
+    window.addReview = addReview;
+  });
   </script>
 </body>
 </html>

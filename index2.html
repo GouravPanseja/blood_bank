@@ -964,55 +964,12 @@
                         <th>Status</th>
                     </thead>
                     <tbody class="table-content">
-                        <tr>
-                            <td>1</td>
-                            <td>Sneha</td>
-                            <td>Diabetes</td>
-                            <td>A+</td>
-                            <td>N/A</td>
-                            <td>11/10/2024</td>
-                            <th>Rejected</th>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Sneha</td>
-                            <td>N/A</td>
-                            <td>O-</td>
-                            <td>5</td>
-                            <td>14/10/2024</td>
-                            <th>Approved</th>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td></td>
-                            <td>Hepatitis</td>
-                            <td>AB+</td>
-                            <td>N/A</td>
-                            <td>16/10/2024</td>
-                            <th>Rejected</th>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Anurag Kumar</td>
-                            <td>N/A</td>
-                            <td>O+</td>
-                            <td>N/A</td>
-                            <td>20/10/2024</td>
-                            <th>Rejected</th>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Viren Kumar</td>
-                            <td>N/A</td>
-                            <td>AB-</td>
-                            <td>N/A</td>
-                            <td>21/10/2024</td>
-                            <th>Rejected</th>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
         </div>
+
     </div>
     <script>
 
@@ -1109,7 +1066,6 @@
             <button class="button">Request Blood</button>
         </div>`;
             resultsContainer.appendChild(card);
-
             saveToLocalStorage(data);
         }
 
@@ -1125,12 +1081,6 @@
         let currentHistoryPage = 0;
 
         function loadDonorCards(page = 0) {
-            /*const resultsContainer = document.querySelector('.results');
-            resultsContainer.innerHTML = '';
-            const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
-            existingData.forEach(data => {
-                createDonorCard(data);
-            });*/
             const resultsContainer = document.querySelector('.results');
             resultsContainer.innerHTML = ''; // Clear existing cards
             const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
@@ -1147,7 +1097,6 @@
             loadMoreButton.style.display = end < existingData.length ? 'block' : 'none';
 
         }
-        //window.onload = loadDonorCards;
 
         // search functionality :- 
 
@@ -1218,20 +1167,6 @@
             localStorage.setItem('donorCards', JSON.stringify(initialDonors));
         }
 
-        // adding initial donors to the history :- 
-
-        function addInitialDonorsToHistory() {
-            const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
-
-            // Add initial donors only if the history is empty
-            if (history.length === 0) {
-                const currentDate = new Date().toLocaleDateString(); // Use current date for donation
-                initialDonors.forEach(donor => {
-                    appendToHistory(donor, currentDate);
-                });
-            }
-            loadDonationHistory();
-        }
         // adding history to the page :- 
         function appendToHistory(data, date) {
             const tableContent = document.querySelector('.table-content');
@@ -1239,26 +1174,20 @@
             // Determine the status based on disease entry
             const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';
 
-            // Get the existing history from localStorage
-            const existingHistory = JSON.parse(localStorage.getItem('donationHistory')) || [];
-
             // Get the serial number for the new entry
             const serialNo = tableContent.querySelectorAll('tr').length + 1;
-
-            // Use the length of the existing history to determine the serial number
-            const serialNo = existingHistory.length + 1;
 
             // Create a new table row
             const row = document.createElement('tr');
 
             row.innerHTML = `
-                <td>${serialNo}</td>
-                <td>${data.name}</td>
-                <td>${data.disease || 'N/A'}</td>
-                <td>${data.bloodgroup}</td>
-                <td>${data.units || 'N/A'}</td>
-                <td>${date}</td>
-                <th>${status}</th>
+        <td>${serialNo}</td>
+        <td>${data.name}</td>
+        <td>${data.disease || 'N/A'}</td>
+        <td>${data.bloodgroup}</td>
+        <td>${data.units || 'N/A'}</td>
+        <td>${date}</td>
+        <th>${status}</th>
     `;
 
             // Append the new row to the table body
@@ -1277,13 +1206,11 @@
         }
 
         // Save the donation history to localStorage
-        /*
         function saveHistoryToLocalStorage(entry) {
             const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
             history.push(entry);
             localStorage.setItem('donationHistory', JSON.stringify(history));
         }
-        */
 
         // Load the donation history from localStorage on page load
         function loadDonationHistory(page = 0) {
@@ -1312,27 +1239,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             loadDonationHistory();
             loadDonorCards();
-            addInitialDonorsToHistory();
         });
 
-        // adding color to the status :- 
-        document.addEventListener('DOMContentLoaded', function () {
-            const rows = document.querySelectorAll('.table-content tr');
-
-            rows.forEach(row => {
-                const statusCell = row.querySelector('th:last-child');
-                if (statusCell) {
-                    const status = statusCell.textContent.trim().toLowerCase();
-                    if (status === 'approved') {
-                        row.style.backgroundColor = '#d4edda';
-                        statusCell.style.color = '#155724';
-                    } else if (status === 'rejected') {
-                        row.style.backgroundColor = '#f8d7da';
-                        statusCell.style.color = '#721c24';
-                    }
-                }
-            });
-        });
 
     </script>
 </body>

@@ -1,401 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood Donation Profile</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Vital Reads Layout</title>
+    <!-- <link rel="stylesheet" href="Newstyle.css"> -->
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-image:url('https://wallpaperaccess.com/full/1567666.png');
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .left-section, .donor-history, .medical-history {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .user img {
-            border-radius: 50%;
-            border: 3px solid #3ea0f1;
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-        }
-        .user h3 {
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        .user p {
-            font-size: 14px;
-            color: #777;
-        }
-        .social ul {
-            list-style: none;
+            font-family: Arial, sans-serif;
+            margin: 0;
             padding: 0;
-        }
-        .social ul li {
-            margin: 10px 0;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-        }
-        .social ul li i {
-            margin-right: 10px;
-            color: #00c8ff;
-        }
-        .card-header {
-            background-color: #00b3ff;
-            color: white;
-            padding: 20px;
-            border-radius: 10px 10px 0 0;
-            cursor: pointer; /* Make the header clickable */
-        }
-        .card-body {
-            padding: 20px;
-        }
-        /* Common styles for both card and profile box hover effect */
-        .left-section, .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #f5f5f5;
         }
 
-        /* 3D hover effect for both the profile box and cards */
-        .left-section:hover, .card:hover {
-            transform: scale(1.05) translateZ(10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-        .right-section {
+        .news-stories {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 40px;
+            position: relative;
         }
-        .medical-history {
-            margin-top: 20px;
+
+        .text-container {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 0px;
+            max-width: 400px;
+            height: 50%;
+            background-color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
-        table {
-            margin: 20px 0;
-            display: none; /* Hide the table initially */
+
+        .text-container h1 {
+            color: #8c2b50;
+            font-size: 2.5em;
+            margin: 0;
+            border-radius: 0px;
+
         }
-        th {
-            background-color: #00b7ff;
-            color: white;
+
+        .text-container p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.5em;
+            margin-top: 10px;
+            border-radius: 0px;
+
         }
-        .info-message {
-            color: #021223;
+
+        .image-container {
+            width: 100%;
+            height: 30%;
+            margin: auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 40%;
+
+        }
+
+
+        .vital-reads {
             text-align: center;
-            margin: 20px 0;
-        }        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .user img {
-                width: 80px;
-                height: 80px;
-            }
-            .left-section, .right-section {
-                margin-bottom: 20px;
-            }
+            padding: 50px 20px;
+            background-color: #fff;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .vital-reads h1 {
+            font-size: 2.5em;
+            color: #8c2b50;
+        }
+
+        .vital-reads p {
+            font-size: 1.2em;
+            margin: 10px 0 20px;
+            color: #555;
+        }
+
+        .view-more {
+            font-size: 1em;
+            color: #d35400;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .reads-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            /* margin: 80px; */
+        }
+
+        .reads-container P {
+            font-size: medium;
+            color: lightslategrey;
+            margin: 20px;
+
+        }
+
+        .read-item {
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0.8, 0.1, 0.3);
+            border-radius: 0px;
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-item:hover {
+            transform: translateY(+20px);
+        }
+
+        .read-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .read-item h2 {
+            font-size: 1.2em;
+            padding: 15px;
+            color: #333;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <!-- Left Section (Profile Edit Form with Image) -->
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="left-section">
-                    <div class="user text-center">
-                        <!-- Profile Image -->
-                        <img id="profilePicture" class="img-fluid" src="https://static.vecteezy.com/system/resources/thumbnails/008/442/086/small_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg" alt="User Logo">
-                        <input type="file" id="profilePictureInput" accept="image/*" onchange="previewImage(event)" style="display:none;">
-                        <p class="change-photo" style="cursor:pointer;" onclick="document.getElementById('profilePictureInput').click();">Change Profile Photo</p>
-                    </div>
+    <section class="news-stories">
+        <div class="text-container">
+            <h1>News and stories</h1>
+            <p>
+                Looking for news or a dose of inspiration? You’ve come to the right place. Whether you’re passionate
+                about donating, eager to collaborate, or curious to investigate, explore the latest news, stories, and
+                research at Lifeblood. Dive into our resources, discover impactful ways to get involved, and stay
+                informed about the latest in blood donation and medical advancements. Let’s make a difference together.
 
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="bloodGroup">Blood Group</label>
-                                <select class="form-control" id="bloodGroup" required>
-                                    <option disabled selected>Select your blood group</option>
-                                    <option>A+</option>
-                                    <option>A-</option>
-                                    <option>B+</option>
-                                    <option>B-</option>
-                                    <option>O+</option>
-                                    <option>O-</option>
-                                    <option>AB+</option>
-                                    <option>AB-</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="location">Location</label>
-                                <input type="text" class="form-control" id="location" placeholder="Enter your location" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastDonation">Last Donation Date</label>
-                                <input type="date" class="form-control" id="lastDonation" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="contact">Contact Number</label>
-                                <input type="tel" class="form-control" id="contact" placeholder="Enter your contact number" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">Save Profile</button>
-                        </form>
-                    </div>
-                </div>
+
+            </p>
+        </div>
+        <div class="image-container">
+            <img src="https://www.lifeblood.com.au/sites/default/files/styles/hero_banner_1280_width/public/2021-08/Research_image1_4.jpg.webp?itok=VpxI4w4e"
+                alt="Scientific background">
+        </div>
+    </section>
+    <section class="vital-reads">
+        <h1>Vital reads</h1>
+        <p>Giving life is vital... and so are these top reads and fun facts from behind the scenes, to keep front of
+            mind.</p>
+        <br>
+        <br>
+        <div class="reads-container">
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-03/FMT%20pills_467x290px.png.webp?itok=Q_qxn-r7"
+                    alt="Microbiome product">
+                <h2>Microbiome product gets the green light from the TGA</h2>
+                <p>Australian Red Cross Lifeblood’s life-changing donor stool product has received Therapeutic Goods
+                    Administration (TGA) approval for use in patients with a potentially life-threatening bowel i</p>
             </div>
-
-            <!-- Right Section (Donor History at top and Medical History at bottom) -->
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="right-section">
-                    <!-- Donor History Section (Top Right Half) -->
-                    <div class="donor-history">
-                        <div class="card">
-                            <div class="card-header text-center" onclick="toggleDonorHistory()">
-                                <h2>Donor History</h2>
-                            </div>
-                            <div class="card-body">
-                                <p class="info-message" id="infoMessage">Click the header to view your donor history.</p>
-                                <table class="table table-striped table-bordered" id="donorHistoryTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Date of Donation</th>
-                                            <th>Blood Group</th>
-                                            <th>Location</th>
-                                            <th>Contact</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Example donation records -->
-                                        <tr>
-                                            <td>2024-01-15</td>
-                                            <td>A+</td>
-                                            <td>City Hospital</td>
-                                            <td>(123) 456-7890</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023-12-05</td>
-                                            <td>B-</td>
-                                            <td>Community Health Center</td>
-                                            <td>(987) 654-3210</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023-11-20</td>
-                                            <td>O+</td>
-                                            <td>City Blood Bank</td>
-                                            <td>(555) 555-5555</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2023-10-10</td>
-                                            <td>AB+</td>
-                                            <td>Main Hospital</td>
-                                            <td>(444) 444-4444</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <button class="btn btn-primary" onclick="addDonation()">Add New Donation</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Medical History Section (Bottom Right Half) -->
-                    <div class="medical-history mt-3">
-                        <div class="card">
-                            <div class="card-header text-center" onclick="toggleMedicalHistory()">
-                                <h2>Medical History</h2>
-                            </div>
-                            <div class="card-body">
-                                <p class="info-message" id="medicalInfoMessage">Click the header to view your medical history.</p>
-                                <div id="medicalHistoryForm" style="display: none;">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="allergies">Allergies</label>
-                                            <textarea class="form-control" id="allergies" rows="2" placeholder="List any allergies you have"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="chronicConditions">Chronic Conditions</label>
-                                            <textarea class="form-control" id="chronicConditions" rows="2" placeholder="List any chronic medical conditions"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="currentMedications">Current Medications</label>
-                                            <textarea class="form-control" id="currentMedications" rows="2" placeholder="List any current medications you are taking"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="pastSurgeries">Past Surgeries</label>
-                                            <textarea class="form-control" id="pastSurgeries" rows="2" placeholder="List any past surgeries"></textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary btn-block">Save Medical History</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/dwf-article-preview-opt-1-467x290px.jpg.webp?itok=Wv1V7FLc"
+                    alt="Donating more fun">
+                <h2>Could donating be even more fun, together?</h2>
+                <p>Whether it’s tackling everyday chores, embarking on new adventures, giving back to the community or
+                    blood donation, having a buddy by your side can make all the difference.</p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/Shoba_467x290px.png.webp?itok=BVoD_xlO"
+                    alt="Stem cell match">
+                <h2>Shoba was the only stem cell match in the world</h2>
+                <p>It was a simple email that launched Lifeblood nurse, Shoba, on the path to change a stranger’s life.
+                </p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/J24383_Growth_Explain_1.1_Need_thumbnail_467x290px.jpg.webp?itok=-DuRrSBe"
+                    alt="blood donation photo">
+                <h2>What’s behind Australia’s growing demand for blood donors?</h2>
+                <p>Blood isn’t just for emergenciesWhen we think of donating blood, our minds usually jump to
+                    emergencies — like helping car crash victims or people underg</p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/J24383_Growth_Explain_1.1_Process_thumbnail_467x290px.jpg.webp?itok=tRh-Vo-l"
+                    alt="Donating more fun">
+                <h2>From party pies to saving lives: the step-by-step guide to giving blood</h2>
+                <p>Did you know a single blood donation only takes about 10 minutes and can save up to three lives? Find
+                    out how you can make a difference to those in need.</p>
+            </div>
+            <div class="read-item">
+                <img
+                    src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/Amanda_Michael_835x480px.png.webp?itok=TJ4BWotj">
+                <h2>Looking for a reason to give blood? This couple has a few.</h2>
+                <p>To help celebrate the launch of the Life Is The Reason campaign, we caught up with married couple and
+                    milestone donors, Amanda and Michael, to find out what motivates them.</p>
             </div>
         </div>
-    </div>
-
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- JavaScript for Image Preview and Add Donation -->
-    <script>
-        function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function() {
-                const output = document.getElementById('profilePicture');
-                output.src = reader.result;
-            }
-            reader.readAsDataURL(event.target.files[0]);
-        }
-
-        function toggleDonorHistory() {
-            const table = document.getElementById("donorHistoryTable");
-            if (table.style.display === "none") {
-                table.style.display = "table"; // Show the table
-            } else {
-                table.style.display = "none"; // Hide the table
-            }
-        }
-
-        function addDonation() {
-            const date = prompt("Enter date of donation (YYYY-MM-DD):");
-            const bloodGroup = prompt("Enter blood group:");
-            const location = prompt("Enter location:");
-            const contact = prompt("Enter contact number:");
-
-            // Get the table body
-            const tableBody = document.querySelector("#donorHistoryTable tbody");
-
-            // Create a new row with the entered data
-            const newRow = tableBody.insertRow();
-            newRow.innerHTML = `
-                <td>${date}</td>
-                <td>${bloodGroup}</td>
-                <td>${location}</td>
-                <td>${contact}</td>
-            `;
-        }
-        function toggleMedicalHistory() {
-            const medicalHistoryForm = document.getElementById('medicalHistoryForm');
-            if (medicalHistoryForm.style.display === 'none' || medicalHistoryForm.style.display === '') {
-                medicalHistoryForm.style.display = 'block'; // Show the form
-            } else {
-                medicalHistoryForm.style.display = 'none'; // Hide the form
-            }
-        }
-        // Load profile data from localStorage when the page loads
-window.onload = function() {
-    loadProfileData();
-    loadDonorHistory();
-};
-
-// Function to preview the profile image
-function previewImage(event) {
-    const reader = new FileReader();
-    reader.onload = function() {
-        const output = document.getElementById('profilePicture');
-        output.src = reader.result;
-
-        // Save the image to localStorage
-        localStorage.setItem('profileImage', reader.result);
-    }
-    reader.readAsDataURL(event.target.files[0]);
-}
-
-// Load profile data from localStorage
-function loadProfileData() {
-    const fullName = localStorage.getItem('fullName');
-    const bloodGroup = localStorage.getItem('bloodGroup');
-    const location = localStorage.getItem('location');
-    const lastDonation = localStorage.getItem('lastDonation');
-    const contact = localStorage.getItem('contact');
-    const profileImage = localStorage.getItem('profileImage');
-
-    if (fullName) document.getElementById('fullName').value = fullName;
-    if (bloodGroup) document.getElementById('bloodGroup').value = bloodGroup;
-    if (location) document.getElementById('location').value = location;
-    if (lastDonation) document.getElementById('lastDonation').value = lastDonation;
-    if (contact) document.getElementById('contact').value = contact;
-    if (profileImage) document.getElementById('profilePicture').src = profileImage;
-}
-
-// Save profile data to localStorage when the form is submitted
-document.querySelector('form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const fullName = document.getElementById('fullName').value;
-    const bloodGroup = document.getElementById('bloodGroup').value;
-    const location = document.getElementById('location').value;
-    const lastDonation = document.getElementById('lastDonation').value;
-    const contact = document.getElementById('contact').value;
-
-    localStorage.setItem('fullName', fullName);
-    localStorage.setItem('bloodGroup', bloodGroup);
-    localStorage.setItem('location', location);
-    localStorage.setItem('lastDonation', lastDonation);
-    localStorage.setItem('contact', contact);
-
-    alert('Profile saved successfully!');
-});
-
-// Add a new donation and save it to localStorage
-function addDonation() {
-    const date = prompt("Enter date of donation (YYYY-MM-DD):");
-    const bloodGroup = prompt("Enter blood group:");
-    const location = prompt("Enter location:");
-    const contact = prompt("Enter contact number:");
-
-    const donorHistory = JSON.parse(localStorage.getItem('donorHistory')) || [];
-    const newDonation = { date, bloodGroup, location, contact };
-    
-    donorHistory.push(newDonation);
-    localStorage.setItem('donorHistory', JSON.stringify(donorHistory));
-
-    loadDonorHistory(); // Refresh the table with new data
-}
-
-// Load donation history from localStorage
-function loadDonorHistory() {
-    const donorHistory = JSON.parse(localStorage.getItem('donorHistory')) || [];
-    const tableBody = document.querySelector("#donorHistoryTable tbody");
-    tableBody.innerHTML = '';
-
-    donorHistory.forEach(donation => {
-        const newRow = tableBody.insertRow();
-        newRow.innerHTML = `
-            <td>${donation.date}</td>
-            <td>${donation.bloodGroup}</td>
-            <td>${donation.location}</td>
-            <td>${donation.contact}</td>
-        `;
-    });
-}
-
-// Toggle visibility of the donor history table
-function toggleDonorHistory() {
-    const table = document.getElementById("donorHistoryTable");
-    if (table.style.display === "none") {
-        table.style.display = "table";
-    } else {
-        table.style.display = "none";
-    }
-}
-        
-        
-    </script>
+    </section>
 </body>
+
 </html>

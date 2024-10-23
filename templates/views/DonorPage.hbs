@@ -777,8 +777,8 @@
                                     <input type="number" placeholder="Enter your Mobile Number" name="contact">
                                 </div>
                                 <div id="idproof">
-                                    <label for="id">Id Proof </label>
-                                    <input type="file">
+                                    <label for="id">Units (in ml): </label>
+                                    <input type="text" placeholder="Enter the amount of blood " name="units">
                                 </div>
                             </div>
                         </div>
@@ -972,12 +972,11 @@
 
     </div>
     <script>
-
         const form = document.getElementById('myForm');
 
         form.addEventListener('submit', async function (e) {
-            console.log("hi");
             e.preventDefault();
+            alert("Form submitted successfully !!"); 
 
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
@@ -989,6 +988,9 @@
             if (selectedImageURL) {
                 data.image = selectedImageURL;
             }
+
+            // Check if the donation is approved or rejected
+            const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';
 
             try {
                 const response = await fetch('http://localhost:3000/submitDonorInfo', {
@@ -1009,7 +1011,7 @@
                 // create donor card :- 
                 createDonorCard(data);
 
-                appendToHistory(data, currentDate);
+                appendToHistory(data, currentDate, status);
 
             } catch (error) {
                 console.error('Error:', error);
@@ -1168,11 +1170,14 @@
         }
 
         // adding history to the page :- 
-        function appendToHistory(data, date) {
+        function appendToHistory(data, date, status) {
             const tableContent = document.querySelector('.table-content');
 
             // Determine the status based on disease entry
-            const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';
+            /*const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';*/
+
+            // Determine the value for units based on the status
+            const unitsDisplay = status === 'Rejected' ? 'N/A' : data.units || 'N/A';
 
             // Get the serial number for the new entry
             const serialNo = tableContent.querySelectorAll('tr').length + 1;
@@ -1185,7 +1190,7 @@
         <td>${data.name}</td>
         <td>${data.disease || 'N/A'}</td>
         <td>${data.bloodgroup}</td>
-        <td>${data.units || 'N/A'}</td>
+        <td>${unitsDisplay}</td>
         <td>${date}</td>
         <th>${status}</th>
     `;
@@ -1199,7 +1204,7 @@
                 name: data.name,
                 disease: data.disease || 'N/A',
                 bloodgroup: data.bloodgroup,
-                units: data.units || 'N/A',
+                units: unitsDisplay || 'N/A',
                 date,
                 status
             });

@@ -173,6 +173,7 @@ const multer = require("multer");
 // const upload = multer({dest : "uploads/"});
 
 app.use(express.json()); 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public')); 
@@ -292,7 +293,7 @@ app.post('/login', async (req, res) => {
     }
 });
 app.post('/submitDonorInfo', async (req, res) => {
-    const { name, email, gender, contact, age, dateOfBirth, idProof, address, city, district, state, pincode, bloodGroup, donationHistory, medicalHistory, surgeryHistory, diseases } = req.body;
+    const { name, email, gender, contact, age, dateOfBirth, units, address, city, district, state, pincode, bloodGroup, donationHistory, medicalHistory, surgeryHistory, diseases } = req.body;
 
     try {
         const newDonorInfo = await donorInfo.create({
@@ -302,7 +303,7 @@ app.post('/submitDonorInfo', async (req, res) => {
             contact,
             age,
             dateOfBirth,
-            idProof,
+            units,
             address,
             city,
             district,
@@ -322,7 +323,7 @@ app.post('/submitDonorInfo', async (req, res) => {
 });
 
 // logout user :- 
-app.get("/logout" , (req, res)=>{
+app.post("/logout" , (req, res)=>{
     res.sendFile(path.join(__dirname ,'public' ,'index.html')); 
 }) 
 
@@ -333,7 +334,6 @@ app.post("/uploads", upload.single('image'), (req, res)=>{
     }
     console.log(req.body); 
     console.log(req.file); 
-    // return res.sendFile("AdminPage"); 
 })
 
 app.get('/userPage', (req, res) => {

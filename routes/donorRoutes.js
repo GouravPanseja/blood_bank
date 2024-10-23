@@ -16,7 +16,7 @@ const donorInfoSchema = new mongoose.Schema({
     contact: String,
     age: Number,
     dateOfBirth: Date,
-    idProof: Buffer,
+    units: Number,
     address: String,
     city: String,
     district: String,
