@@ -1,0 +1,193 @@
+<div class="tab-pane fade donor-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+    tabindex="0">
+    <h1>Donor Information</h1>
+    <form id="myForm" action="/uploads" method="post" enctype="multipart/form-data">
+
+        <div class="container" id="main-box">
+            <div class="row">
+                <!-- Profile Section -->
+                <div class="col-md-4">
+                    <div id="profile">
+                        <div id="pic-container">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                alt="Profile Picture">
+                        </div>
+                        <div class="pic-description">
+                            <h2>Upload Photo</h2>
+                            <h4 id="pic-1">Please Upload Image Size less than 100Kb</h4>
+                            <input type="file" name="image" id="imageInput" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information Section -->
+                <div class="col-md-4">
+                    <div id="details" class="padding">
+                        <h2>Personal Information</h2>
+                        <div class="name">
+                            <label>Name </label>
+                            <input type="text" placeholder="Enter your Name" name="name">
+                        </div>
+                        <div id="age">
+                            <label for="age">Age </label>
+                            <input type="number" placeholder="Enter your Age" name="age">
+                        </div>
+                        <div id="dateofbirth">
+                            <label for="dob">Date Of Birth </label>
+                            <input type="date" name="dateOfBirth">
+                        </div>
+                        <div id="gender">
+                            <label for="male">Gender</label>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male" id="male-label">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                            <input type="radio" id="other" name="gender" value="Other">
+                            <label for="other">Other</label>
+                        </div>
+                        <div id="email">
+                            <label for="email">Email </label>
+                            <input type="email" placeholder="Enter your Email Id" name="email">
+                        </div>
+                        <div id="mobile">
+                            <label for="mobile">Mobile Number </label>
+                            <input type="number" placeholder="Enter your Mobile Number" name="contact">
+                        </div>
+                        <div id="idproof">
+                            <label for="id">Units (in ml): </label>
+                            <input type="text" placeholder="Enter the amount of blood " name="units">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Details Section -->
+                <div class="col-md-4">
+                    <div id="contact-details" class="padding">
+                        <h2>Contact Details</h2>
+                        <div id="address">
+                            <label>Address Line 1</label>
+                            <input type="text" placeholder="Enter your Address" name="address" required>
+                        </div>
+                        <div id="address">
+                            <label>Address Line 2</label>
+                            <input type="text" placeholder="Enter your Address">
+                        </div>
+                        <div id="city">
+                            <label for="City">City</label>
+                            <input type="text" placeholder="Enter your city" name="city">
+                        </div>
+                        <div id="district">
+                            <label for="district">District</label>
+                            <input type="text" placeholder="Enter your District" name="district">
+                        </div>
+                        <div id="state">
+                            <label for="state">State</label>
+                            <input type="text" placeholder="Enter your state" name="state">
+                        </div>
+                        <div id="pincode">
+                            <label for="id">Pin Code</label>
+                            <input type="number" placeholder="Enter PINCODE" name="pincode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Other Information Section -->
+        <div class="col-md-4" id="other" class="hidden">
+            <div id="other-info-details" class="padding">
+                <h2>Other Information</h2>
+                <div class="other-info-container">
+                    <div class="other-info-section">
+                        <h3>Blood Group</h3>
+                        <div id="bloodgroup">
+                            <label>Blood Group </label>
+                            <select name="bloodgroup" id="blood" name="bloodGroup">
+                                <option value="select">--Select--</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="o+">O+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="A-">A-</option>
+                                <option value="B-">B-</option>
+                                <option value="o-">O-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Donation History</h3>
+                        <div id="previous" class="gap">
+                            <label>Have you donated previously?</label>
+                            <input type="radio" id="yes" name="donated" value="yes" name="donationHistory">
+                            <label for="yes">Yes</label>
+                            <input type="radio" id="no" name="donated" value="no">
+                            <label for="no">No</label>
+                        </div>
+                        <div id="donate" class="gap">
+                            <Label>What was the last time you donated Blood ? </Label>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Medical History</h3>
+                        <div id="six" class="gap">
+                            <label for="last">In the last six months have you had any of the following ?</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="radio" name="medicalHistory">
+                            <label for="tattoo" name="medicalHistory">Tattooing</label>
+                            <input type="radio" name="medicalHistory">
+                            <label for="ear">Ear piercing</label>
+                            <input type="radio" name="medicalHistory">
+                            <label for="dental">Dental Extraction</label>
+                            {{!-- <input type="text"
+                                placeholder="like tattooing , ear piercing , dental extraction .... "
+                                name="medicalHistory"> --}}
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Diseases</h3>
+                        <div id="state">
+                            <label for="" id="State">Do you suffer from or have suffered from any of the
+                                following
+                            </label>
+                            <label for="" id="dis">diseases?</label>
+                        </div>
+                        <div class="disease">
+                            <div class="disease-container">
+                                <input type="text" name="disease" placeholder="Enter any disease (if have)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Surgery/Blood Transfusion History</h3>
+                        <div>
+                            <label for="" id="history">Is there any history of surgery or blood transfusion in
+                                the
+                                past six
+                            </label>
+                            <label for="" id="month">months?</label>
+                        </div>
+
+                        <div class="options">
+                            <input type="radio" id="major" name="surgeryHistory">
+                            <label for="">Major</label>
+                            <input type="radio" name="surgeryHistory">
+                            <label for="">Minor</label>
+                            <input type="radio" name="surgeryHistory">
+                            <label for="">Blood Transfusion</label>
+                            {{!-- <input type="text" placeholder="Enter yes/ no" name="surgeryHistory"> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="submit-button" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

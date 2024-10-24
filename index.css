@@ -542,7 +542,46 @@ label {
     display: block ruby;
 }
 
-/* history page */
-#history-tab-pane{
-    
+/*  population counting */
+
+.statistics-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    background-color: #f7f7f7;
+    margin-top: 50px;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: all 1s ease;
+    position: absolute;
+    top: 50rem;
+}
+
+.stat-box {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    margin-left: 7rem;
+}
+
+.stat-box h2 {
+    font-size: 3rem;
+    margin: 0;
+    color: #333;
+}
+
+.stat-box p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.roll {
+    text-align: center;
+    justify-content: center;
+    margin-left: 3rem;
+    margin-top: 4rem;
 }

@@ -711,13 +711,25 @@
     <div class="tab-content container" id="myTabContent">
         <div class="tab-pane fade show active home-content" id="home-tab-pane" role="tabpanel"
             aria-labelledby="home-tab" tabindex="0">
-            <!-- <img src="https://www.careinsurance.com/upload_master/media/posts/July2022/donating-blood-here-s-everything-you-need-to-know.jpg"
-                alt=""> -->
-            <!-- <img src="https://www.lifeblood.com.au/sites/default/files/styles/hero_banner_1280_width/public/2024-09/life-is-the-reason-blood-hero-banner-1580x490px.jpg.webp?itok=UPDm3R4O" alt=""> -->
-            <!-- <img src="https://www.nhlbi.nih.gov/sites/default/files/2023-06/Whole-Blood-Transfusion-Parts_Social-Media-Animated-GIF_0.gif" alt=""> -->
             <img src="https://www.nhlbi.nih.gov/sites/default/files/2022-12/BDDEP_What-Anemia-Animation-GIF-3_2022-12-15%20%281%29.gif"
                 alt="">
-            <!-- <img src="https://www.nhlbi.nih.gov/sites/default/files/2022-12/BDDEP_Blood-Safety-Animation-GIF-3_2022-12-15%20%281%29.gif" alt=""> -->
+
+            <!-- donor count  -->
+            <h1 class="roll">Your blood donation is a gift straight from the heart</h1>
+            <div class="statistics-container">
+                <div class="stat-box">
+                    <h2 class="counter" data-target="1500">0</h2>
+                    <p>Donors</p>
+                </div>
+                <div class="stat-box">
+                    <h2 class="counter" data-target="2300">0</h2>
+                    <p>Volunteers</p>
+                </div>
+                <div class="stat-box">
+                    <h2 class="counter" data-target="500">0</h2>
+                    <p>Hospitals</p>
+                </div>
+            </div>
         </div>
 
         <!-- donor information  -->
@@ -964,7 +976,7 @@
                         <th>Status</th>
                     </thead>
                     <tbody class="table-content">
-                        
+
                     </tbody>
                 </table>
             </div>
@@ -1230,8 +1242,7 @@
             <td>${entry.bloodgroup}</td>
             <td>${entry.units}</td>
             <td>${entry.date}</td>
-            <th>${entry.status}</th>
-        `;
+            <th>${entry.status}</th> `;
                 tableContent.appendChild(row);
             });
         }

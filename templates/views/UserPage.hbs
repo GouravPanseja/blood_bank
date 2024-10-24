@@ -1656,6 +1656,16 @@
   .navbar-nav .nav-link.active {
     color: white;
   }
+
+  .decline-cookies {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-right: 10px;
+
+}
 </style>
 
 <body>
@@ -1664,7 +1674,7 @@
       <li class="smaal"><a href="#eligible">Eligibility Criteria</a></li>
       <li class="smaal"><a href="#cee">Process</a></li>
       <li class="smaal"><a href="#rw">Reviews</a></li>
-      <li class="smaal"><a href="faqs.html">FAQs</a></li>
+      <li class="smaal"><a href="" onclick="window.location.href='faqs.html'">FAQs</a></li>
     </ul>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
@@ -1763,10 +1773,7 @@
         </div>
         <button id="next">&#10095;</button>
       </div>
-      <div class="fixed-text">
-        <h2 id="fixed">RED CONNECT</h2>
-        <button class="fixed_btn">DONATE</button>
-      </div>
+
     </div>
   </div>
 
@@ -2190,6 +2197,8 @@
 
     // cookie javascript //
 
+    // cookie javascript //
+
     document.addEventListener('DOMContentLoaded', function () {
       var cookieConsent = document.getElementById('cookie-consent');
       cookieConsent.style.display = 'block';
@@ -2201,20 +2210,34 @@
 
         cookieConsent.style.display = 'none';
       });
-    });
 
-    document.querySelectorAll(".dropbtn").forEach(button => {
-      button.addEventListener("click", function () {
-        var dropdownContent = button.nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-          dropdownContent.style.display = "none";
+      var declineButton = document.getElementById('decline-cookies');
+      declineButton.addEventListener('click', function () {
+        cookieConsent.style.display = 'none';
+        console.log('Cookies have been declined');
+      });
+
+
+      function setCookiesconsent(choice) {
+        localStorage.setItem('cookieConsent', choice);
+        cookieConsent.style.display = 'none';
+        if (choice == 'accepted') {
+          console.log("Cookies have been accepted");
         }
         else {
-          dropdownContent.style.display = "block";
+          console.log("Cookies have been declined");
+
         }
+      }
+
+      acceptButton.addEventListener('click', function () {
+        setCookiesconsent('accepted');
+      });
+
+      declineButton.addEventListener('click', function () {
+        setCookiesconsent('declined');
       });
     });
-
 
     //   CURSOR POINTER  ///
 
