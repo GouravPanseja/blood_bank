@@ -6,7 +6,7 @@ const hbs = require("hbs");
 const app = express();
 const multer = require("multer"); 
 
-app.use(express.json()); // fro parsing json requests 
+app.use(express.json()); // for parsing json requests 
 app.use(express.static(path.join(__dirname, 'public'))); // for serving ststic files
 
 app.use(bodyParser.urlencoded({ extended: true })); // Parses URL-encoded data from HTML form submissions.
