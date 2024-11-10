@@ -7,7 +7,7 @@ const eventsData = [
     { title: "TRANSCON 2024", date: "2024-11-21", type: "external", location: "Ahmedabad" },
 ];
 
-export const Events = () => {
+export const Event = () => {
     const [events, setEvents] = useState(eventsData);
     const [filters, setFilters] = useState({
         date: '',
