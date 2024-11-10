@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Blood Donation</title>
+</head>
+<body>
+    <div class="container">
+        <h1>FAQs</h1>
+
+        <h2 onclick="toggleAnswer('answer1')">Who can donate blood?</h2>
+        <div id="answer1" class="answer">
+            <p>Most healthy adults aged 17-65 and weighing over 50 kg can donate. Check specific guidelines if unsure.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer2')">How often can I donate?</h2>
+        <div id="answer2" class="answer">
+            <p>You can donate whole blood every 8 weeks. Other types of donations may have different intervals.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer3')">Is it safe?</h2>
+        <div id="answer3" class="answer">
+            <p>Yes, donating blood is safe. Sterile, single-use equipment is always used.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer4')">How long does it take?</h2>
+        <div id="answer4" class="answer">
+            <p>The whole process takes about an hour, with the actual donation lasting 10 minutes.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer5')">What should I do before donating?</h2>
+        <div id="answer5" class="answer">
+            <p>Eat well, stay hydrated, and bring an ID. Avoid fatty foods before your donation.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer6')">What happens to my blood?</h2>
+        <div id="answer6" class="answer">
+            <p>Your blood is tested, processed, and separated into components for medical use.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer7')">Can I donate with a tattoo?</h2>
+        <div id="answer7" class="answer">
+            <p>Wait a few months after getting a tattoo or piercing before donating.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer8')">Do I need to prepare before donating?</h2>
+        <div id="answer8" class="answer">
+            <p>Yes, eat well, stay hydrated, and avoid alcohol. Bring an ID and wear comfortable clothing.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer9')">Can I donate if I'm on medication?</h2>
+        <div id="answer9" class="answer">
+            <p>Some medications may affect your ability to donate. It's best to consult with the donation center beforehand.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer10')">How will I feel after donating?</h2>
+        <div id="answer10" class="answer">
+            <p>Most people feel fine after donating, but it's good to rest, stay hydrated, and avoid strenuous activities for the rest of the day.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer11')">Can I donate if I've traveled recently?</h2>
+        <div id="answer11" class="answer">
+            <p>Travel to certain areas may affect your ability to donate. Check with your local donation center if you're unsure.</p>
+        </div>
+
+        <h2 onclick="toggleAnswer('answer12')">What types of blood donations are there?</h2>
+        <div id="answer12" class="answer">
+            <p>You can donate whole blood, platelets, plasma, or double red cells. Each type has different benefits and requirements.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleAnswer(id) {
+            const answerDiv = document.getElementById(id);
+            const isVisible = answerDiv.style.display === 'block';
+            document.querySelectorAll('.answer').forEach(div => div.style.display = 'none');
+            answerDiv.style.display = isVisible ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

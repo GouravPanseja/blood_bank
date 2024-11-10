@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAP2zflqevyz0T17cMEG602B4946W8sGdmdA&s");
+    background-size: cover;
+}
+
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 10px rgba(248, 243, 243, 0.1);
+    width: 350px;
+    opacity: 0.9;
+}
+
+h2 {
+    text-align: center;
+    color: #222;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+    font-weight: bold;
+    margin-right: 10px; /* Add some space between label and input */
+    flex-basis: 30%; 
+}
+
+input, select {
+    flex-grow: 1; /* Input takes up remaining space */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+p {
+    text-align: center;
+    color: #555;
+}
+
+a {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Add responsiveness for smaller screen sizes */
+@media screen and (max-width: 410px) {
+    .form-container {
+        width: auto;
+    }
+
+    .form-group {
+        flex-direction: column; /* Stack label and input vertically on smaller screens */
+    }
+
+    label {
+        margin-bottom: 5px;
+        text-align: left;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}

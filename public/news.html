@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Reads Layout</title>
+    <!-- <link rel="stylesheet" href="Newstyle.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .news-stories {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 40px;
+            position: relative;
+        }
+
+        .text-container {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 0px;
+            max-width: 400px;
+            height: 50%;
+            background-color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .text-container h1 {
+            color: #8c2b50;
+            font-size: 2.5em;
+            margin: 0;
+            border-radius: 0px;
+
+        }
+
+        .text-container p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.5em;
+            margin-top: 10px;
+            border-radius: 0px;
+
+        }
+
+        .image-container {
+            width: 100%;
+            height: 30%;
+            margin: auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 40%;
+
+        }
+
+
+        .vital-reads {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .vital-reads h1 {
+            font-size: 2.5em;
+            color: #8c2b50;
+        }
+
+        .vital-reads p {
+            font-size: 1.2em;
+            margin: 10px 0 20px;
+            color: #555;
+        }
+
+        .view-more {
+            font-size: 1em;
+            color: #d35400;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .reads-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            /* margin: 80px; */
+        }
+
+        .reads-container P {
+            font-size: medium;
+            color: lightslategrey;
+            margin: 20px;
+
+        }
+
+        .read-item {
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0.8, 0.1, 0.3);
+            border-radius: 0px;
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-item:hover {
+            transform: translateY(+20px);
+        }
+
+        .read-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .read-item h2 {
+            font-size: 1.2em;
+            padding: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="news-stories">
+        <div class="text-container">
+            <h1>News and stories</h1>
+            <p>
+                Looking for news or a dose of inspiration? You’ve come to the right place. Whether you’re passionate
+                about donating, eager to collaborate, or curious to investigate, explore the latest news, stories, and
+                research at Lifeblood. Dive into our resources, discover impactful ways to get involved, and stay
+                informed about the latest in blood donation and medical advancements. Let’s make a difference together.
+
+
+            </p>
+        </div>
+        <div class="image-container">
+            <img src="https://www.lifeblood.com.au/sites/default/files/styles/hero_banner_1280_width/public/2021-08/Research_image1_4.jpg.webp?itok=VpxI4w4e"
+                alt="Scientific background">
+        </div>
+    </section>
+    <section class="vital-reads">
+        <h1>Vital reads</h1>
+        <p>Giving life is vital... and so are these top reads and fun facts from behind the scenes, to keep front of
+            mind.</p>
+        <br>
+        <br>
+        <div class="reads-container">
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-03/FMT%20pills_467x290px.png.webp?itok=Q_qxn-r7"
+                    alt="Microbiome product">
+                <h2>Microbiome product gets the green light from the TGA</h2>
+                <p>Australian Red Cross Lifeblood’s life-changing donor stool product has received Therapeutic Goods
+                    Administration (TGA) approval for use in patients with a potentially life-threatening bowel i</p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/dwf-article-preview-opt-1-467x290px.jpg.webp?itok=Wv1V7FLc"
+                    alt="Donating more fun">
+                <h2>Could donating be even more fun, together?</h2>
+                <p>Whether it’s tackling everyday chores, embarking on new adventures, giving back to the community or
+                    blood donation, having a buddy by your side can make all the difference.</p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/Shoba_467x290px.png.webp?itok=BVoD_xlO"
+                    alt="Stem cell match">
+                <h2>Shoba was the only stem cell match in the world</h2>
+                <p>It was a simple email that launched Lifeblood nurse, Shoba, on the path to change a stranger’s life.
+                </p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/J24383_Growth_Explain_1.1_Need_thumbnail_467x290px.jpg.webp?itok=-DuRrSBe"
+                    alt="blood donation photo">
+                <h2>What’s behind Australia’s growing demand for blood donors?</h2>
+                <p>Blood isn’t just for emergenciesWhen we think of donating blood, our minds usually jump to
+                    emergencies — like helping car crash victims or people underg</p>
+            </div>
+            <div class="read-item">
+                <img src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/J24383_Growth_Explain_1.1_Process_thumbnail_467x290px.jpg.webp?itok=tRh-Vo-l"
+                    alt="Donating more fun">
+                <h2>From party pies to saving lives: the step-by-step guide to giving blood</h2>
+                <p>Did you know a single blood donation only takes about 10 minutes and can save up to three lives? Find
+                    out how you can make a difference to those in need.</p>
+            </div>
+            <div class="read-item">
+                <img
+                    src="https://www.lifeblood.com.au/sites/default/files/styles/390_x_280/public/2024-09/Amanda_Michael_835x480px.png.webp?itok=TJ4BWotj">
+                <h2>Looking for a reason to give blood? This couple has a few.</h2>
+                <p>To help celebrate the launch of the Life Is The Reason campaign, we caught up with married couple and
+                    milestone donors, Amanda and Michael, to find out what motivates them.</p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

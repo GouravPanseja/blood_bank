@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+    body {
+        margin: 0;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        padding: 0;
+    }
+
+    .navbar {
+        background-color: #d00;
+        z-index: 10;
+        position: fixed;
+        width: 100%;
+        top: 0px;
+    }
+
+    .navbar-brand,
+    .nav-link {
+        color: white !important;
+    }
+
+    .navbar-brand i,
+    .nav-item i {
+        color: white !important;
+        font-size: 1.5rem;
+    }
+
+    .nav-link:hover {
+        color: #ffdddd !important;
+    }
+
+    .navbar-toggler-icon {
+        background-color: white;
+    }
+
+    .home-content {
+        position: fixed;
+        left: -0.5rem;
+    }
+
+    .home-content img {
+        position: fixed;
+        top: 3.5rem;
+        width: 100%;
+    }
+
+    .bx-log-in:hover {
+        color: #333;
+        cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+        .home-content {
+            flex-direction: column;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .quote-container {
+            margin-top: 20px;
+            margin-left: 0;
+        }
+
+        img {
+            height: 450px;
+        }
+
+        #profile,
+        #details,
+        #contact-details {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        body {
+            overflow-y: auto;
+        }
+    }
+
+
+    /* donar page */
+    #pic-container {
+        height: 10rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #pic-container img {
+        height: 10rem;
+        width: auto;
+        border-radius: 50%;
+        margin-left: -2px;
+        border: 2px solid black;
+    }
+
+    #profile,
+    #details,
+    #contact-details {
+        padding: 20px;
+        text-align: center;
+        border: 2px solid black;
+        margin-bottom: 20px;
+        background-color: #fbe2e2;
+        /* background-color: #efefef; */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 10px;
+    }
+
+    #profile h2,
+    #details h2,
+    #contact-details h2 {
+        font-weight: bold;
+    }
+
+    .tab-pane {
+        padding-bottom: 20px;
+    }
+
+    .pic-description #pic-1 {
+        font-size: 15px;
+        color: rgb(251, 54, 54);
+        font-weight: bold;
+    }
+
+    .donor-content h1 {
+        text-align: center;
+        padding-top: 10px;
+        font-weight: 700;
+    }
+
+    #main-box {
+        padding-top: 2rem;
+    }
+
+    input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #contact-details label {
+        width: 150px;
+        text-align: left;
+    }
+
+    #details div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    #details label {
+        width: 150px;
+        text-align: left;
+        margin-right: 10px;
+    }
+
+    #details input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    #details input[type="text"],
+    #details input[type="number"],
+    #details input[type="date"],
+    #details input[type="email"],
+    #details input[type="file"] {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #gender {
+        display: flex;
+        align-items: center;
+    }
+
+    #idproof {
+        margin-bottom: 0;
+    }
+
+    #male {
+        margin-left: 76px;
+    }
+
+    #gender #male-label {
+        margin-left: 10px;
+    }
+
+    #other {
+        width: fit-content;
+        margin: auto;
+    }
+
+    #details {
+        margin-left: -4rem;
+    }
+
+    @media screen and (max-width: 768px) {
+        .container .row {
+            flex-direction: column;
+        }
+
+        #profile,
+        #details,
+        #contact-details {
+            /*  */
+            margin-left: 0;
+            margin-right: auto;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        body {
+            overflow-y: auto;
+
+        }
+
+        #main-box {
+            padding-top: 0;
+        }
+    }
+
+    /*  others info  */
+
+    .pic-description {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    #profile {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: max-content;
+    }
+
+    #details,
+    #contact-details,
+    #other-info-details {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form input fields styling */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="file"],
+    input[type="date"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    /* Form buttons */
+    button {
+        background-color: #d00;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #b00;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #prev-button,
+    #submit-button {
+        margin: 5px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+
+        .container,
+        .row {
+            display: block;
+        }
+
+        .col-md-4 {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #pic-container {
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        #pic-container img {
+            width: 40%;
+        }
+    }
+
+
+    #other-info-details {
+        padding: 20px;
+        text-align: center;
+        border: 2px solid black;
+        margin-bottom: 20px;
+        background-color: #eee;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 3rem;
+    }
+
+    .other-info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .other-info-section {
+        background-color: #f9f9f9;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .other-info-section h3 {
+        margin-top: 0;
+    }
+
+    .gap {
+        margin-bottom: 10px;
+    }
+
+    .checkbox {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-evenly;
+    }
+
+    .disease {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .disease-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: auto;
+    }
+
+    .dise {
+        margin-right: 10px;
+    }
+
+    #other-info {
+        margin-top: 2rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .options {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+
+    /* find donor page :-  */
+    #contact-tab-pane {
+        background-color: #eee;
+        width: 100%;
+        position: absolute;
+        left: 0px;
+    }
+
+    .container1 {
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 1px 3px 14px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        min-width: 500px;
+        width: 70%;
+        margin-top: 10px;
+        position: relative;
+        top: 6rem;
+        margin: auto;
+        height: 210vh;
+        margin-bottom: 10rem;
+    }
+
+    .wrapper {
+        position: relative;
+    }
+
+    .container1 h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+        padding: 10px;
+    }
+
+    .results {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+        top: 5rem;
+    }
+
+    .card {
+        width: 30%;
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+        transition: 0.3s ease;
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .card h3 {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .card p {
+        margin-bottom: 10px;
+        color: #666;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        /* margin-top: 10px; */
+        margin-top: auto;
+    }
+
+    .button-group .button {
+        padding: 8px 15px;
+        /* background-color: #007bff; */
+        background-color: red;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        flex: 1;
+        margin-left: 6px;
+    }
+
+    .button-group .button:hover {
+        background-color: #0069d9;
+    }
+
+    .search {
+        display: flex;
+        position: absolute;
+        margin: auto;
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+        width: 50%;
+        margin: auto;
+    }
+
+    .search-input {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 300px;
+    }
+
+    .search-button {
+        padding: 10px;
+        background-color: red;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+        height: max-content;
+        margin-top: 5px;
+    }
+
+    .search-button:hover {
+        background-color: #0069d9;
+    }
+
+    .sort {
+        display: flex;
+        width: 20%;
+        align-items: baseline;
+        position: absolute;
+        right: 20px;
+        gap: 10px;
+    }
+
+    #sort-dropdown {
+        height: max-content;
+        width: max-content;
+    }
+
+    .sort label {
+        display: block ruby;
+    }
+
+
+    /* history page */
+
+    #tab-pane {
+        margin-top: 2rem;
+    }
+
+    /* Wrapper to center the table */
+    .table-wrapper {
+        width: 100%;
+        margin: 20px auto;
+        overflow-x: auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        top: 10rem;
+    }
+
+    /* Style the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    thead {
+        background-color: #f44336;
+        color: white;
+    }
+
+    th,
+    td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    td {
+        font-size: 14px;
+        color: #333;
+    }
+
+    button#loadMoreHistory {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button#loadMoreHistory:hover {
+        background-color: #d32f2f;
+    }
+
+    /* Responsive table */
+    @media (max-width: 768px) {
+
+        th,
+        td {
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+    }
+
+    .heading {
+        position: absolute;
+        top: 6rem;
+        text-align: center;
+    }
+</style>
+
+</head>
+    
+
+<body>
+    <!-- Responsive navbar with toggle -->
+
+    {{> navbar}}
+
+
+    <!-- Tab Content -->
+    <!-- home page  -->
+    <div class="tab-content container" id="myTabContent">
+        <div class="tab-pane fade show active home-content" id="home-tab-pane" role="tabpanel"
+            aria-labelledby="home-tab" tabindex="0">
+            <img src="https://www.nhlbi.nih.gov/sites/default/files/2022-12/BDDEP_What-Anemia-Animation-GIF-3_2022-12-15%20%281%29.gif" alt="">
+            
+        </div>
+
+         {{!-- {{> donorForm}} --}}
+         <div class="tab-pane fade donor-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+    tabindex="0">
+    <h1>Donor Information</h1>
+    <form id="myForm" action="/uploads" method="post" enctype="multipart/form-data">
+
+        <div class="container" id="main-box">
+            <div class="row">
+                <!-- Profile Section -->
+                <div class="col-md-4">
+                    <div id="profile">
+                        <div id="pic-container">
+                            <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                alt="Profile Picture">
+                        </div>
+                        <div class="pic-description">
+                            <h2>Upload Photo</h2>
+                            <h4 id="pic-1">Please Upload Image Size less than 100Kb</h4>
+                            <input type="file" name="image" id="imageInput" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information Section -->
+                <div class="col-md-4">
+                    <div id="details" class="padding">
+                        <h2>Personal Information</h2>
+                        <div class="name">
+                            <label>Name </label>
+                            <input type="text" placeholder="Enter your Name" name="name">
+                        </div>
+                        <div id="age">
+                            <label for="age">Age </label>
+                            <input type="number" placeholder="Enter your Age" name="age">
+                        </div>
+                        <div id="dateofbirth">
+                            <label for="dob">Date Of Birth </label>
+                            <input type="date" name="dateOfBirth">
+                        </div>
+                        <div id="gender">
+                            <label for="male">Gender</label>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male" id="male-label">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                            <input type="radio" id="other" name="gender" value="Other">
+                            <label for="other">Other</label>
+                        </div>
+                        <div id="email">
+                            <label for="email">Email </label>
+                            <input type="email" placeholder="Enter your Email Id" name="email">
+                        </div>
+                        <div id="mobile">
+                            <label for="mobile">Mobile Number </label>
+                            <input type="number" placeholder="Enter your Mobile Number" name="contact">
+                        </div>
+                        <div id="idproof">
+                            <label for="id">Units (in ml): </label>
+                            <input type="text" placeholder="Enter the amount of blood " name="units">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Details Section -->
+                <div class="col-md-4">
+                    <div id="contact-details" class="padding">
+                        <h2>Contact Details</h2>
+                        <div id="address">
+                            <label>Address Line 1</label>
+                            <input type="text" placeholder="Enter your Address" name="address" required>
+                        </div>
+                        <div id="address">
+                            <label>Address Line 2</label>
+                            <input type="text" placeholder="Enter your Address">
+                        </div>
+                        <div id="city">
+                            <label for="City">City</label>
+                            <input type="text" placeholder="Enter your city" name="city">
+                        </div>
+                        <div id="district">
+                            <label for="district">District</label>
+                            <input type="text" placeholder="Enter your District" name="district">
+                        </div>
+                        <div id="state">
+                            <label for="state">State</label>
+                            <input type="text" placeholder="Enter your state" name="state">
+                        </div>
+                        <div id="pincode">
+                            <label for="id">Pin Code</label>
+                            <input type="number" placeholder="Enter PINCODE" name="pincode">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Other Information Section -->
+        <div class="col-md-4" id="other" class="hidden">
+            <div id="other-info-details" class="padding">
+                <h2>Other Information</h2>
+                <div class="other-info-container">
+                    <div class="other-info-section">
+                        <h3>Blood Group</h3>
+                        <div id="bloodgroup">
+                            <label>Blood Group </label>
+                            <select name="bloodgroup" id="blood" name="bloodGroup">
+                                <option value="select">--Select--</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="AB+">AB+</option>
+                                <option value="o+">O+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="A-">A-</option>
+                                <option value="B-">B-</option>
+                                <option value="o-">O-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Donation History</h3>
+                        <div id="previous" class="gap">
+                            <label>Have you donated previously?</label>
+                            <input type="radio" id="yes" name="donated" value="yes" name="donationHistory">
+                            <label for="yes">Yes</label>
+                            <input type="radio" id="no" name="donated" value="no">
+                            <label for="no">No</label>
+                        </div>
+                        <div id="donate" class="gap">
+                            <Label>What was the last time you donated Blood ? </Label>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Medical History</h3>
+                        <div id="six" class="gap">
+                            <label for="last">In the last six months have you had any of the following ?</label>
+                        </div>
+                        <div class="checkbox">
+                            <input type="radio" name="medicalHistory">
+                            <label for="tattoo" name="medicalHistory">Tattooing</label>
+                            <input type="radio" name="medicalHistory">
+                            <label for="ear">Ear piercing</label>
+                            <input type="radio" name="medicalHistory">
+                            <label for="dental">Dental Extraction</label>
+                            {{!-- <input type="text"
+                                placeholder="like tattooing , ear piercing , dental extraction .... "
+                                name="medicalHistory"> --}}
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Diseases</h3>
+                        <div id="state">
+                            <label for="" id="State">Do you suffer from or have suffered from any of the
+                                following
+                            </label>
+                            <label for="" id="dis">diseases?</label>
+                        </div>
+                        <div class="disease">
+                            <div class="disease-container">
+                                <input type="text" name="disease" placeholder="Enter any disease (if have)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="other-info-section">
+                        <h3>Surgery/Blood Transfusion History</h3>
+                        <div>
+                            <label for="" id="history">Is there any history of surgery or blood transfusion in
+                                the
+                                past six
+                            </label>
+                            <label for="" id="month">months?</label>
+                        </div>
+
+                        <div class="options">
+                            <input type="radio" id="major" name="surgeryHistory">
+                            <label for="">Major</label>
+                            <input type="radio" name="surgeryHistory">
+                            <label for="">Minor</label>
+                            <input type="radio" name="surgeryHistory">
+                            <label for="">Blood Transfusion</label>
+                            {{!-- <input type="text" placeholder="Enter yes/ no" name="surgeryHistory"> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="submit-button" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+        
+
+        <!-- Request donor page ..  -->
+
+        {{!-- {{>requestDonor}} --}}
+        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+    <div class="container1">
+        <h1>Find Donor</h1>
+        <div class="search-bar">
+            <div class="search">
+                <input type="text" class="search-input" placeholder="Search location ...." id="searchInput">
+                <button class="search-button" id="searchButton">Search</button>
+            </div>
+            <div class="sort">
+                <label for="sort-dropdown">SORT BY</label>
+                <select id="sort-dropdown">
+                    <option value="select" selected>--Select--</option>
+                    <option value="A+">A+</option>
+                    <option value="B+">B+</option>
+                    <option value="AB+">AB+</option>
+                    <option value="O+">O+</option>
+                    <option value="A-">A-</option>
+                    <option value="B-">B-</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+        </div>
+        <div class="results">
+            <button id="loadMoreDonors" style="display:none;">Load More Donors</button>
+        </div>
+    </div>
+</div>
+
+
+        <!-- History page  -->
+
+        {{!-- {{>donationHistory}} --}}
+        <div class="tab-pane fade" id="history-tab-pane" role="tabpanel" aria-labelledby="history-tab" tabindex="0">
+    <h1 class="heading">My Donations </h1>
+    <div class="table-wrapper">
+        <table border="1">
+            <thead class="table-head">
+                <th>Serial No.</th>
+                <th>Name</th>
+                <th>Disease</th>
+                <th>Blood Group</th>
+                <th>Units(in ml)</th>
+                <th>Donation Date</th>
+                <th>Status</th>
+            </thead>
+            <tbody class="table-content">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+    <script>
+        const form = document.getElementById('myForm');
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            alert("Form submitted successfully !!");
+
+            // creates a form data object that collects all the input data from the form fields, in-built js object 
+            //stored as a key-value pair where the key is the name attribute of the form field, and the value is the user's input.
+
+            const formData = new FormData(form);
+
+            // Converts the FormData object into a plain JavaScript object . Each form field becomes a key-value pair in the data object.
+            // field's name is a key and its corresponding input is the value.
+
+            const data = Object.fromEntries(formData.entries());
+
+            console.log("form data ", data);
+
+            const currentDate = new Date().toLocaleDateString();
+
+            if (selectedImageURL) {
+                data.image = selectedImageURL;
+            }
+
+            // Check if the donation is approved or rejected
+            const status = data.disease && data.disease !== 'N/A' ? 'Rejected' : 'Approved';
+
+            try {
+                const response = await fetch('http://localhost:3000/submitDonorInfo', {
+                    // it is where the data is sent 
+                    method: 'POST', // used to send data to the server
+                    headers: {
+                        'Content-Type': 'application/json', // contains json data
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (!response.ok) {
+                    console.log("fetch response unsuccessful");
+                }
+
+                const result = await response.json();
+                console.log('Success:', result);
+
+                // create donor card :- 
+                createDonorCard(data);
+
+                appendToHistory(data, currentDate, status);
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        // logout user :- 
+        let icon = document.querySelector(".bx-log-in");
+        icon.addEventListener("click", logout);
+
+        async function logout() {
+            try {
+                // Uses the Fetch API to send a POST request to the server at the /logout endpoint.
+
+                const response = await fetch('/logout', { method: "post" })
+                if (response.ok) {
+                    window.location.href = '/';
+                } else {
+                    console.error("Logout failed with status:", response.status);
+                }
+            }
+            catch (error) {
+                console.log("Logout failed:", error);
+            }
+        }
+
+        // adding image in the profile photo :- 
+        const imageInput = document.getElementById('imageInput');
+        const profileImage = document.querySelector('#pic-container img');
+        let selectedImageURL = '';
+
+        imageInput.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                //  The FileReader API is used to read the contents of files (in this case, the image file) as a URL that can be used in the browser.
+                //This reader object will help read the file and convert it into a format that can be displayed as an image.
+                reader.onload = function (e) {
+                    selectedImageURL = e.target.result; // This contains the result of reading the file.
+                    profileImage.src = selectedImageURL;
+                };
+                // this tells the FileReader to read the contents of the file as a data URL. Once the reading is complete, the onload event will be triggered, and the image will be displayed.
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // create donor card :- 
+        function createDonorCard(data) {
+            const resultsContainer = document.querySelector('.results');
+
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `
+        <img src="${data.image || selectedImageURL || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'}" alt="Donor Image">
+        <h3>${data.name}</h3>
+        <p>Blood Group: ${data.bloodgroup}</p>
+        <p>Location: ${data.city}</p>
+        <div class="button-group">
+            <button class="button">Request Blood</button>
+        </div>`;
+            resultsContainer.appendChild(card);
+            saveToLocalStorage(data);
+        }
+
+        function saveToLocalStorage(data) {
+            const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
+            existingData.push(data);
+            localStorage.setItem('donorCards', JSON.stringify(existingData));
+        }
+
+        const DONORS_PER_PAGE = 5; // Number of donor cards to load per page
+        const HISTORY_PER_PAGE = 5; // Number of history entries to load per page
+        let currentDonorPage = 0;
+        let currentHistoryPage = 0;
+
+        function loadDonorCards(page = 0) {
+            const resultsContainer = document.querySelector('.results');
+            resultsContainer.innerHTML = ''; // Clear existing cards
+            const existingData = JSON.parse(localStorage.getItem('donorCards')) || [];
+            const start = page * DONORS_PER_PAGE;
+            const end = start + DONORS_PER_PAGE;
+            const donorsToDisplay = existingData.slice(start, end);
+
+            donorsToDisplay.forEach(data => {
+                createDonorCard(data);
+            });
+        }
+
+        // search functionality :- 
+
+        const searchInput = document.getElementById('searchInput');
+        const sortDropdown = document.getElementById('sort-dropdown');
+
+        searchInput.addEventListener('input', filterDonorCards);
+        sortDropdown.addEventListener('change', filterDonorCards);
+
+        function filterDonorCards() {
+            const searchText = searchInput.value.toLowerCase();
+            const selectedBloodGroup = sortDropdown.value;
+
+            const donorCards = document.querySelectorAll('.card');
+
+            donorCards.forEach(card => {
+                const donorLocation = card.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+                const donorBloodGroup = card.querySelector('p:nth-of-type(1)').textContent;
+
+                const matchesLocation = donorLocation.includes(searchText);
+                const matchesBloodGroup = selectedBloodGroup === 'select' || donorBloodGroup.includes(selectedBloodGroup);
+
+                if (matchesLocation && matchesBloodGroup) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // adding donors initially :-
+
+        const initialDonors = [
+            {
+                name: "Akansha Garg",
+                bloodgroup: "A+",
+                city: "Uttar Pradesh",
+                image: "https://media.istockphoto.com/id/1369508766/photo/beautiful-successful-latin-woman-smiling.jpg?s=612x612&w=0&k=20&c=LoznG6eGT42_rs9G1dOLumOTlAveLpuOi_U755l_fqI="
+            },
+            {
+                name: "Neelam Gupta",
+                bloodgroup: "O-",
+                city: "Chandigarh",
+                image: "https://img.freepik.com/free-photo/human-face-expressions-emotions-positive-joyful-young-beautiful-female-with-fair-straight-hair-casual-clothing_176420-15188.jpg?semt=ais_hybrid"
+            },
+            {
+                name: "Shanaya Kapoor",
+                bloodgroup: "AB+",
+                city: "Haryana",
+                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGFwcHklMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D"
+            },
+            {
+                name: "Anurag Kumar",
+                bloodgroup: "O+",
+                city: "Chattisgarh",
+                image: "https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+            },
+            {
+                name: "Viren Kumar",
+                bloodgroup: "AB-",
+                city: "Bihar",
+                image: "https://media.istockphoto.com/id/1364917563/photo/businessman-smiling-with-arms-crossed-on-white-background.jpg?s=612x612&w=0&k=20&c=NtM9Wbs1DBiGaiowsxJY6wNCnLf0POa65rYEwnZymrM="
+            },
+        ];
+
+        // Save the data to localStorage , if not present
+        if (!localStorage.getItem('donorCards')) {
+            localStorage.setItem('donorCards', JSON.stringify(initialDonors));
+        }
+
+        // adding history to the page :- 
+        function appendToHistory(data, date, status) {
+            const tableContent = document.querySelector('.table-content');
+
+            // Determine the value for units based on the status
+            const unitsDisplay = status === 'Rejected' ? 'N/A' : data.units || 'N/A';
+
+            // Get the serial number for the new entry
+            const serialNo = tableContent.querySelectorAll('tr').length + 1;
+
+            // Create a new table row
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+        <td>${serialNo}</td>
+        <td>${data.name}</td>
+        <td>${data.disease || 'N/A'}</td>
+        <td>${data.bloodgroup}</td>
+        <td>${unitsDisplay}</td>
+        <td>${date}</td>
+        <th>${status}</th>
+    `;
+
+            // Append the new row to the table body
+            tableContent.appendChild(row);
+
+            // Save the updated history to localStorage
+            saveHistoryToLocalStorage({
+                serialNo,
+                name: data.name,
+                disease: data.disease || 'N/A',
+                bloodgroup: data.bloodgroup,
+                units: unitsDisplay || 'N/A',
+                date,
+                status
+            });
+        }
+
+        // Save the donation history to localStorage
+        function saveHistoryToLocalStorage(entry) {
+            const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
+            history.push(entry);
+            localStorage.setItem('donationHistory', JSON.stringify(history));
+        }
+
+        // Load the donation history from localStorage on page load
+        function loadDonationHistory(page = 0) {
+            const tableContent = document.querySelector('.table-content');
+            tableContent.innerHTML = '';
+            const history = JSON.parse(localStorage.getItem('donationHistory')) || [];
+            const start = page * HISTORY_PER_PAGE;
+            const end = start + HISTORY_PER_PAGE;
+            const historyToDisplay = history.slice(start, end);
+
+            historyToDisplay.forEach(entry => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+            <td>${entry.serialNo}</td>
+            <td>${entry.name}</td>
+            <td>${entry.disease}</td>
+            <td>${entry.bloodgroup}</td>
+            <td>${entry.units}</td>
+            <td>${entry.date}</td>
+            <th>${entry.status}</th>
+        `;
+                tableContent.appendChild(row);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadDonationHistory();
+            loadDonorCards();
+        });
+
+
+    </script>
+</body>
+
+</html>
